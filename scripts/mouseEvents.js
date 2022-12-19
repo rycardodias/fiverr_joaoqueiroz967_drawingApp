@@ -6,6 +6,7 @@ import { setPatternMode } from './modes/pattern.js'
 import { setVLineMode } from './modes/vline.js'
 import { setLineMode, updateLineMode } from './modes/line.js'
 import { setCircleMode, updateCircleMode } from './modes/circle.js'
+import { setRectangleMode, updateRectangleMode } from './modes/rectangle.js'
 
 let mousePressed = false;
 let currentMode = '';
