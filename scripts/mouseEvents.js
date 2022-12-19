@@ -1,118 +1,25 @@
 import { getDrawingColor, getLineSize } from './userPreferences.js'
+import { setDefaultMode } from './modes/default.js'
+import { setPenMode } from './modes/pen.js'
+import { setSprayMode } from './modes/spray.js'
+import { setPatternMode } from './modes/pattern.js'
+import { setVLineMode } from './modes/vline.js'
+import { setLineMode, updateLineMode } from './modes/line.js'
+import { setCircleMode, updateCircleMode } from './modes/circle.js'
 
 let mousePressed = false;
 let currentMode = '';
 
 const modes = {
     default: '',
-    drawing: 'drawing',
+    pen: 'pen',
+    spray: 'spray',
+    pattern: 'pattern',
+    vline: 'vline',
+    hline: 'hline',
     line: 'line',
     circle: 'circle',
     rectangle: 'rectangle',
-}
-
-// Drawing objects
-let line;
-let circle;
-let rectangle;
-
-
-const setDefaultMode = (canvas) => {
-    canvas.isDrawingMode = false;
-    canvas.setCursor('default');
-    canvas.renderAll();
-}
-
-const setDrawingMode = (canvas) => {
-    setDefaultMode(canvas);
-    canvas.freeDrawingBrush.color = getDrawingColor();
-    canvas.freeDrawingBrush.width = getLineSize()
-    canvas.freeDrawingBrush.blur = 3
-    canvas.isDrawingMode = true;
-    canvas.renderAll();
-}
-
-const setLineMode = (canvas) => {
-    let pointer = canvas.getPointer(canvas);
-
-    line = new fabric.Line([pointer.x, pointer.y, pointer.x, pointer.y], {
-        stroke: getDrawingColor(),
-        strokeWidth: getLineSize()
-    })
-
-    canvas.add(line)
-    canvas.renderAll()
-}
-
-const updateLineMode = (canvas) => {
-    let pointer = canvas.getPointer();
-    line.set({
-        x2: pointer.x,
-        y2: pointer.y
-    })
-    canvas.renderAll()
-}
-
-
-const setCircleMode = (canvas) => {
-    let pointer = canvas.getPointer(canvas);
-
-    circle = new fabric.Circle({
-        left: pointer.x,
-        top: pointer.y,
-        radius: 0,
-        fill: getDrawingColor(),
-        strokeWidth: getLineSize(),
-    })
-
-    canvas.setActiveObject(circle)
-
-    canvas.add(circle)
-    canvas.renderAll()
-}
-
-const updateCircleMode = (canvas) => {
-    let pointer = canvas.getPointer();
-    let initialPosition = circle.getCoords()[0];
-
-    let distance = Math.abs(((pointer.x - initialPosition.x) ^ 2) + ((pointer.y - initialPosition.y) ^ 2))
-
-    circle.set({
-        radius: distance
-    })
-
-    canvas.renderAll()
-}
-
-
-const setRectangleMode = (canvas) => {
-    let pointer = canvas.getPointer(canvas);
-
-    rectangle = new fabric.Rect({
-        left: pointer.x,
-        top: pointer.y,
-        width: 0,
-        height: 0,
-        fill: getDrawingColor(),
-        strokeWidth: getLineSize(),
-    })
-
-    canvas.setActiveObject(rectangle)
-
-    canvas.add(rectangle)
-    canvas.renderAll()
-}
-
-const updateRectangleMode = (canvas) => {
-    let pointer = canvas.getPointer();
-    let initialPosition = rectangle.getCoords()[0];
-
-    rectangle.set({
-        width: pointer.x - initialPosition.x,
-        height: pointer.y - initialPosition.y
-    })
-
-    canvas.renderAll()
 }
 
 export const setMouseEvents = (canvas) => {
@@ -120,7 +27,13 @@ export const setMouseEvents = (canvas) => {
     canvas.on('mouse:move', (e) => {
         if (!mousePressed) return;
         switch (currentMode) {
-            case modes.drawing:
+            case modes.pen:
+                break;
+            case modes.spray:
+
+                break;
+            case modes.pattern:
+
                 break;
             case modes.line:
                 updateLineMode(canvas);
@@ -138,11 +51,21 @@ export const setMouseEvents = (canvas) => {
     });
 
     canvas.on('mouse:down', (e) => {
+        document.getElementById('active-mode').innerText = currentMode
         mousePressed = true;
 
         switch (currentMode) {
-            case modes.drawing:
-                setDrawingMode(canvas);
+            case modes.pen:
+                setPenMode(canvas);
+                break;
+            case modes.spray:
+                setSprayMode(canvas);
+                break;
+            case modes.pattern:
+                setPatternMode(canvas);
+                break;
+            case modes.vline:
+                setVLineMode(canvas);
                 break;
             case modes.line:
                 setLineMode(canvas)
@@ -154,14 +77,13 @@ export const setMouseEvents = (canvas) => {
                 setRectangleMode(canvas);
                 break;
             default:
+                setDefaultMode(canvas);
                 break;
         }
     });
 
     canvas.on('mouse:up', (e) => {
         mousePressed = false;
-
-        document.getElementById('active-mode').innerText = currentMode
     });
 };
 
@@ -176,13 +98,46 @@ export const setButtonsOnClick = (canvas) => {
         })
     }
 
-    document.getElementById('btn-drawing').onclick = () => {
-        if (currentMode === modes.drawing) {
+    document.getElementById('btn-pen').onclick = () => {
+        if (currentMode === modes.pen) {
             currentMode = modes.default
         } else {
-            currentMode = modes.drawing
+            currentMode = modes.pen
         }
     }
+
+    document.getElementById('btn-spray').onclick = () => {
+        if (currentMode === modes.spray) {
+            currentMode = modes.default
+        } else {
+            currentMode = modes.spray
+        }
+    }
+
+    document.getElementById('btn-pattern').onclick = () => {
+        if (currentMode === modes.pattern) {
+            currentMode = modes.default
+        } else {
+            currentMode = modes.pattern
+        }
+    }
+
+    document.getElementById('btn-vline').onclick = () => {
+        if (currentMode === modes.vline) {
+            currentMode = modes.default
+        } else {
+            currentMode = modes.vline
+        }
+    }
+
+    document.getElementById('btn-hline').onclick = () => {
+        if (currentMode === modes.hline) {
+            currentMode = modes.default
+        } else {
+            currentMode = modes.hline
+        }
+    }
+
 
     document.getElementById('btn-line').onclick = () => {
         if (currentMode === modes.line) {
