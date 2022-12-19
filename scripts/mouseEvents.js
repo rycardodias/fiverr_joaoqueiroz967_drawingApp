@@ -114,29 +114,30 @@ export const setButtonsOnClick = (canvas) => {
         }
     }
 
-    document.getElementById('btn-pattern').onclick = () => {
-        if (currentMode === modes.pattern) {
-            currentMode = modes.default
-        } else {
-            currentMode = modes.pattern
-        }
-    }
+    // document.getElementById('btn-pattern').onclick = () => {
+    //     if (currentMode === modes.pattern) {
+    //         currentMode = modes.default
+    //     } else {
+    //         currentMode = modes.pattern
+    //     }
+    // }
 
-    document.getElementById('btn-vline').onclick = () => {
-        if (currentMode === modes.vline) {
-            currentMode = modes.default
-        } else {
-            currentMode = modes.vline
-        }
-    }
 
-    document.getElementById('btn-hline').onclick = () => {
-        if (currentMode === modes.hline) {
-            currentMode = modes.default
-        } else {
-            currentMode = modes.hline
-        }
-    }
+    // document.getElementById('btn-vline').onclick = () => {
+    //     if (currentMode === modes.vline) {
+    //         currentMode = modes.default
+    //     } else {
+    //         currentMode = modes.vline
+    //     }
+    // }
+
+    // document.getElementById('btn-hline').onclick = () => {
+    //     if (currentMode === modes.hline) {
+    //         currentMode = modes.default
+    //     } else {
+    //         currentMode = modes.hline
+    //     }
+    // }
 
 
     document.getElementById('btn-line').onclick = () => {
