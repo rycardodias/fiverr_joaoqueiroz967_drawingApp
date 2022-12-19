@@ -1,4 +1,4 @@
-import { getDrawingColor, getLineSize } from '../userPreferences.js'
+import { getDrawingColor } from '../userPreferences.js'
 
 let rectangle;
 
@@ -10,8 +10,7 @@ export const setRectangleMode = (canvas) => {
         top: pointer.y,
         width: 0,
         height: 0,
-        fill: getDrawingColor(),
-        strokeWidth: getLineSize(),
+        fill: getDrawingColor()
     })
 
     canvas.setActiveObject(rectangle)

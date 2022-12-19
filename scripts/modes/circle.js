@@ -10,8 +10,7 @@ export const setCircleMode = (canvas) => {
         left: pointer.x,
         top: pointer.y,
         radius: 0,
-        fill: getDrawingColor(),
-        strokeWidth: getLineSize(),
+        fill: getDrawingColor()
     })
 
     canvas.setActiveObject(circle)
