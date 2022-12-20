@@ -1,4 +1,4 @@
-import { getDrawingColor, getLineSize } from '../userPreferences.js'
+import { getDrawingColor, getLineSize, getBlur } from '../userPreferences.js'
 
 
 export const setStampMode = (canvas, mouse, imageId) => {
@@ -14,6 +14,12 @@ export const setStampMode = (canvas, mouse, imageId) => {
         img.hasControls = img.hasBorders = true;
 
         img.scale(scale);
+
+        var filter = new fabric.Image.filters.Blur({
+            blur: getBlur()
+        });
+        img.filters.push(filter);
+        img.applyFilters();
 
         canvas.add(img);
     });

@@ -1,4 +1,4 @@
-let drawingColor = '#000000FF';
+let drawingColor = '#000000';
 
 export function getDrawingColor() {
     return drawingColor;
@@ -28,7 +28,7 @@ export function setOpacity(value) {
     return opacity = value;
 }
 
-let blur = 1;
+let blur = 0;
 
 export function getBlur() {
     return blur;

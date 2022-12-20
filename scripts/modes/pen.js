@@ -1,16 +1,13 @@
-import { getDrawingColor, getLineSize, getBlur } from '../userPreferences.js'
+import { getDrawingColor, getLineSize, getBlur, getOpacity } from '../userPreferences.js'
+import { addAlpha } from '../functions/colors.js';
 
 export const setPenMode = (canvas) => {
-  canvas.freeDrawingBrush = new fabric.PencilBrush(canvas)
-  canvas.freeDrawingBrush.color = getDrawingColor();
+  console.log(getBlur())
+  canvas.freeDrawingBrush = new fabric.PencilBrush(canvas, {
+    opacity: getBlur()
+  })
+  canvas.freeDrawingBrush.color = addAlpha(getDrawingColor(), getOpacity());
   canvas.freeDrawingBrush.width = getLineSize()
-
-
-  var filter = new fabric.Image.filters.Blur({
-    blur: 0.5
-  });
-
-  canvas.freeDrawingBrush.blur = filter
 
   canvas.isDrawingMode = true;
   canvas.renderAll();
