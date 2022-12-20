@@ -202,7 +202,7 @@ export const setButtonsOnClick = (canvas) => {
 
         var dataURL = canvas.toDataURL("image/jpeg", 1.0);
 
-        downloadImage(dataURL, 'my-canvas.jpeg');
+        // downloadImage(dataURL, 'my-canvas.jpeg');
 
         // Save | Download image
         function downloadImage(data, filename = 'untitled.jpeg') {
