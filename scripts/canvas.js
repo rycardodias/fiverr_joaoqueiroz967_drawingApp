@@ -10,11 +10,16 @@ export const initCanvas = (id) => {
     });
 };
 
-export const setBackgroundImage = (url, element) => {
+export const setBackgroundImage = (url, canvas) => {
     fabric.Image.fromURL(url, (img) => {
-        element.backgroundImage = img;
-        element.renderAll();
+        canvas.backgroundImage = img;
+        canvas.renderAll();
     })
+};
+
+export const removeBackgroundImage = (canvas) => {
+    canvas.backgroundImage = null;
+    canvas.renderAll();
 };
 
 export const resizeCanvas = (canvas) => {

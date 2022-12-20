@@ -3,18 +3,19 @@ import { initCanvas, setBackgroundImage, resizeCanvas } from './scripts/canvas.j
 import { setMouseEvents, setButtonsOnClick } from './scripts/mouseEvents.js'
 import './scripts/changeEvents.js'
 import { getStamps } from './scripts/stamps.js'
+import { getBackgrounds } from './scripts/backgrounds.js'
 // initialize the functions
 const canvas = initCanvas('canvas');
 
-// setBackgroundImage('./images/sky.jpg', canvas)
+// adicionar objetos
+getStamps()
+getBackgrounds()
 
-getStamps(canvas)
-
+// setBackgroundImage('images/backgrounds/blank.jpg', canvas)
 
 setMouseEvents(canvas)
 
 setButtonsOnClick(canvas)
-
 
 
 window.addEventListener('resize', () => {

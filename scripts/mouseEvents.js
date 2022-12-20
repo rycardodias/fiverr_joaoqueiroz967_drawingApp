@@ -3,7 +3,9 @@ import { setPenMode } from './modes/pen.js'
 import { setSprayMode } from './modes/spray.js'
 import { setPatternMode } from './modes/pattern.js'
 import { stampsList } from './stamps.js';
+import { backgroundsList } from './backgrounds.js';
 import { setStampMode } from './modes/stamp.js'
+import { removeBackgroundImage, setBackgroundImage } from './canvas.js';
 
 let mousePressed = false;
 let currentMode = '';
@@ -45,7 +47,7 @@ export const setMouseEvents = (canvas) => {
             //     break;
 
             case modes.stamp:
-                setStampMode(canvas, currrentStamp)
+                setStampMode(canvas, e, currrentStamp)
                 currentMode = ''
                 break;
             default:
@@ -143,6 +145,9 @@ export const setButtonsOnClick = (canvas) => {
                 canvas.remove(obj)
             }
         })
+
+        removeBackgroundImage(canvas)
+
     }
 
     /// CHANGE CONTAINERS
@@ -238,6 +243,19 @@ export const setButtonsOnClick = (canvas) => {
 
                 currrentStamp = e.target.id;
             }
+        }
+
+    })
+
+    // create onclick event to all backgrounds
+
+    backgroundsList.map((background) => {
+
+        document.getElementById(background).onclick = (e) => {
+            if (background === 'blank.jpg') {
+                return removeBackgroundImage(canvas)
+            }
+            setBackgroundImage(`images/backgrounds/${background}`, canvas)
         }
 
     })

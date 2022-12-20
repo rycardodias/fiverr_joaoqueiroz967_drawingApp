@@ -75,6 +75,10 @@ h5 {
     width: 50px;
 }
 
+#backgrounds-container #container-backgrounds-list {
+    margin-bottom: 15px;
+}
+
 
 /* BACKGROUNDS CONTAINER */
 #stamps-container {
