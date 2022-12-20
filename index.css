@@ -1,384 +1,104 @@
 @charset "utf-8";
 /* CSS App_Grafite_Digital */
 
-
-
-img {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    user-drag: none;
-}
-
-
-
-
-div {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    user-drag: none;
-}
-
-h1 {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    user-drag: none;
-}
-
-
-.contentor_completo {
-    width: 236px;
-    height: 100%;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-}
-
-.ic_fechar_menu {
-    width: 45px;
-    position: absolute;
-    left: 0px;
-    top: 400px;
-}
-
-.contentor_app {
-    width: 161px;
-    height: 100%;
-    background-color: #4d4d4d;
-    position: absolute;
-    right: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.pincel_1 {
-    width: 45px;
-    position: relative;
-    margin-right: 9px;
-    margin-bottom: 9px;
-}
-
-.pincel_2 {
-    width: 45px;
-    position: relative;
-    margin-right: 9px;
-    margin-bottom: 9px;
-}
-
-.pincel_3 {
-    width: 45px;
-    position: relative;
-    margin-bottom: 9px;
-}
-
-.pincel_4 {
-    width: 45px;
-    position: relative;
-    margin-right: 9px;
-}
-
-.pincel_5 {
-    width: 45px;
-    position: relative;
-    margin-right: 9px;
-}
-
-.pincel_6 {
-    width: 45px;
-    position: relative;
-}
-
-.pinceis {
-    position: absolute;
-    top: 298px;
-    width: 161px;
-}
-
-.cores {
-    position: absolute;
-    width: 161px;
-    top: 425px;
-}
-
-.cor {
-    width: 161px;
-    height: 50px;
-    background-color: #8cc63f;
-    position: relative;
-}
-
-.titulo {
-    font-size: 16px;
-    text-align: center;
-    color: #f2f2f2;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-    width: 161px;
-    font-weight: 500;
-    line-height: 18px;
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-.tamanho {
-    position: absolute;
-    width: 161px;
-    top: 525px;
-}
-
-.ic_menos {
-    width: 32px;
-    position: absolute;
-    left: 0px;
-}
-
-.ic_mais {
-    width: 32px;
-    position: absolute;
-    right: 0px;
-}
-
-.ic_bolinha {
-    width: 17px;
-    position: absolute;
-    left: 40px;
-    top: 36px;
-    z-index: 10;
-}
-
-.ic_linha {
-    width: 67px;
-    position: absolute;
-    left: 47px;
-    top: 43px;
-}
-
-.blur {
-    position: absolute;
-    width: 161px;
-    top: 600px;
-}
-
-.transparencia {
-    position: absolute;
-    width: 161px;
-    top: 675px;
-}
-
-
-.fundos_carimbos {
-    position: absolute;
-    width: 161px;
-    top: 755px;
-}
-
-.titulo_fundo {
-    font-size: 16px;
-    font-weight: 500;
-    color: #f2f2f2;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-    position: absolute;
-    left: 11px;
-    top: 0px;
-}
-
-.ic_fundos {
-    width: 75px;
-    position: absolute;
-    left: 0px;
-    top: 38px;
-}
-
-
-.titulo_carimbos {
-    font-size: 16px;
-    font-weight: 500;
-    color: #f2f2f2;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-    position: absolute;
-    right: 3px;
-    top: 0px;
-}
-
-.ic_carimbos {
-    width: 75px;
-    position: absolute;
-    right: 0px;
-    top: 38px;
-}
-
-
-
-.novo_email {
-    position: absolute;
-    width: 161px;
-    top: 840px;
-}
-
-.titulo_novo {
-    font-size: 16px;
-    font-weight: 500;
-    color: #f2f2f2;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-    position: absolute;
-    left: 17px;
-    top: 0px;
-}
-
-.ic_novo {
-    width: 75px;
-    position: absolute;
-    left: 0px;
-    top: 38px;
-}
-
-
-.titulo_email {
-    font-size: 16px;
-    font-weight: 500;
-    color: #f2f2f2;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-    position: absolute;
-    right: 15px;
-    top: 0px;
-}
-
-.ic_email {
-    width: 75px;
-    position: absolute;
-    right: 0px;
-    top: 38px;
-}
-
-.contentor_paleta {
-    width: 161px;
-    height: 100%;
-    background-color: #4d4d4d;
-    position: absolute;
-    right: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
-    z-index: 20;
-}
-
-.paleta_cores {
-    position: absolute;
-    width: 161px;
-    top: 300px;
-}
-
-.ic_seta_voltar {
-    width: 50px;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.margem_voltar {
-    margin-top: 35px;
-
-}
-
-.margem_titulo {
-    margin-bottom: 20px;
-
-}
-
-.ic_seta_cima {
-    width: 50px;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.ic_seta_baixo {
-    width: 50px;
-    position: absolute;
-    right: 0px;
-}
-
-.ic_seta_voltar_esquerda {
-    width: 50px;
-    position: absolute;
-    left: 0px;
-}
-
-.titulo_esquerda {
-    font-size: 16px;
-    text-align: left;
-    color: #f2f2f2;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-    width: 161px;
-    font-weight: 500;
-    line-height: 18px;
-    margin-top: 0px;
-    margin-left: 3px;
-    margin-bottom: 10px;
-}
-
 .contorno {
     -moz-box-shadow: 0 0 0 4px #ffffff;
     -webkit-box-shadow: 0 0 0 4px #ffffff;
     box-shadow: 0 0 0 4px #ffffff;
 }
 
-.contentor_teclado {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    margin: auto;
-
+h5 {
+    color: white;
 }
 
-.fechar_formulario {
+#left-bar {
+    height: 100vh;
+}
+
+#right-bar {
+    background-color: #4d4d4d;
+    height: 100vh;
+}
+
+#base-container #container-brushes {
+    margin: 15px 0px 15px 0px;
+}
+
+#base-container #container-brushes .pincel {
     width: 50px;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-
+    margin-bottom: 15px;
 }
 
-.loading_enviar {
-    width: 700px;
-    height: 550px;
-    background-color: #4caf50;
-    position: absolute;
-    border-radius: 5px;
-}
-
-
-
-.animacao_loading {
-    width: 150px;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 250px;
-    margin: auto;
-}
-
-.txt_loading {
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+#base-container #container-colors {
+    margin: 15px 0px 15px 0px;
     text-align: center;
-    color: #fff;
-    font-size: 24px;
-    font-weight: normal;
-    position: absolute;
-    bottom: 210px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
+}
+
+#base-container #container-colors #div-cor {
+    height: 50px;
+    background-color: #000000;
+}
+
+#base-container #container-sliders {
+    margin: 15px 0px 15px 0px;
+    text-align: center;
+}
+
+#base-container #container-sliders img {
+    width: 28px;
+}
+
+#base-container #container-buttons {
+    margin: 15px 0px 15px 0px;
+    text-align: center;
+}
+
+/* PALETE CONTAINER */
+#palette-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#palette-container img {
+    width: 50px;
+}
+
+/* BACKGROUNDS CONTAINER */
+#backgrounds-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#backgrounds-container img {
+    width: 50px;
+}
+
+
+/* BACKGROUNDS CONTAINER */
+#stamps-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#stamps-container img {
+    width: 50px;
+}
+
+/* NEW CONTAINER */
+#send-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#send-container img {
+    width: 50px;
+}
+
+#send-container #new-save {
+    width: auto;
+    height: 50px;
 }

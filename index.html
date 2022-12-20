@@ -5,52 +5,200 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Drawing App</title>
     <link rel="stylesheet" href="./lib/bootstrap.min.css">
     <script src="./lib/jquery-3.6.0.js"></script>
     <script src="./lib/bootstrap.min.js"></script>
     <script src="./lib/jscolor.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 
 <body>
 
-    <h1>Drawing App</h1>
-
     <div class="container-fluid">
         <div class="row" id="row-center">
-            <div class="col-lg-9">
+
+            <div class="col-lg-10 col-sm-9" id="left-bar">
                 <canvas id="canvas"></canvas>
             </div>
-            <div class="col-lg-3">
-                <p id="active-mode"></p>
-                <button id="btn-pen">Pen Mode</button>
-                <button id="btn-spray">Spray Mode</button>
-                <!-- <button id="btn-pattern">Pattern Mode</button>
-                <button id="btn-vline">Vline Mode</button>
-                <button id="btn-hline">Hline Mode</button> -->
-                <button id="btn-line">Line Mode</button>
-                <button id="btn-circle">Circle Mode</button>
-                <button id="btn-rectangle">Rectangle Mode</button>
+
+            <div class="col-lg-2 col-sm-3" id="right-bar">
+
+                <div id="base-container">
+
+                    <div class="container" id="container-brushes">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <img id="btn-pen" class="pincel" src="images/bs_1.svg" draggable="false" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <img id="btn-circle" class="pincel" src="images/bs_2.svg" draggable="false" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <img id="btn-spray" class="pincel" src="images/bs_3.svg" draggable="false" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <img id="btn-pattern" class="pincel" src="images/bs_4.svg" draggable="false" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <img id="btn-hline" class="pincel" src="images/bs_5.svg" draggable="false" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <img id="btn-square" class="pincel" src="images/bs_6.svg" draggable="false" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" id="container-colors">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Cor</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <div id="div-cor">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" id="container-sliders">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Tamanho</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <input id="input-linesize" type="range" class="form-range" min="1" max="20" step="1"
+                                    value="1">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Opacidade</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <input id="input-opacity" type="range" class="form-range" min="1" max="10" step="1"
+                                    value="10">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Desfoque</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <input id="input-blur" type="range" class="form-range" min="1" max="10" step="1"
+                                    value="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" id="container-buttons">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h5>Fundos</h5>
+                                <img id="btn-backgrounds" src="images/ic_fundos.svg" alt="" draggable="false" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h5>Carimbos</h5>
+                                <img id="btn-stamps" src="images/ic_carimbos.svg" alt="" draggable="false" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px;">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h5>Novo</h5>
+                                <img id="btn-new" src="images/ic_novo.svg" alt="" draggable="false" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h5>Enviar</h5>
+                                <img id="btn-send" src="images/ic_email.svg" alt="" draggable="false" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container of colors palete -->
+                <div id="palette-container" hidden>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Cores</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <md-color-picker color-margin="3" colors-per-row="3" color-size="49" default-tint="500"
+                                    fixedMinHeight="true" palette="material" use-spectrum-picker="true"
+                                    value="#ffffff"></md-color-picker>
+                            </div>
+                            <div class="col-12">
+                                <img id="palette-back-arrow" src="images/ic_seta_esquerda.svg" draggable="false" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-                <button id="btn-clear">Clear</button>
-                <br>
-                <br>
-                color: <input id="input-color" value="#000000FF" data-jscolor="">
+                <!-- Container of backgrounds -->
+                <div id="backgrounds-container" hidden>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Preencher</h5>
+                            </div>
 
-                <br>
-                Size:
-                <input id="input-linesize" type="range" class="form-range" min="1" max="20" step="1" value="1">
+                            <div class="col-12">
+                                <img id="backgrounds-back-arrow" src="images/ic_seta_esquerda.svg" draggable="false" />
+                            </div>
 
-                <br>
-                blur:<input id="input-blur" type="range" class="form-range" min="1" max="20" step="1" value="1">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Container of stamps -->
+                <div id="stamps-container" hidden>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>STAMPS</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <img id="stamps-back-arrow" src="images/ic_seta_esquerda.svg" draggable="false" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container of stamps -->
+                <div id="send-container" hidden>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Tem a certeza que pretende guardar a sua arte?</p>
+                            </div>
+
+                            <div class="col-12">
+                                <img id="send-back-arrow" src="images/ic_seta_esquerda.svg" draggable="false" />
+                                <img id="send-save" src="images/ic_guardar.svg" draggable="false" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
 
-    <script src="./lib/fabric.min.js"></script>
-    <script type="module" src="index.js"></script>
-    <!-- <script src="js/paleta_cores.js"></script> -->
+        <script src="./lib/fabric.min.js"></script>
+        <script type="module" src="index.js"></script>
+        <!-- <script src="lib/paleta_cores.js"></script> -->
 
 </body>
 

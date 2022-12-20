@@ -18,4 +18,24 @@ export function setLineSize(size) {
     return lineSize = size;
 }
 
+let opacity = 1;
+
+export function getOpacity() {
+    return opacity;
+}
+
+export function setOpacity(value) {
+    return opacity = value;
+}
+
+let blur = 1;
+
+export function getBlur() {
+    return blur;
+}
+
+export function setBlur(value) {
+    return blur = value;
+}
+
 
