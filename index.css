@@ -87,6 +87,10 @@ h5 {
     width: 50px;
 }
 
+#stamps-container #container-stamps-list {
+    margin-bottom: 15px;
+}
+
 /* NEW CONTAINER */
 #send-container {
     margin-top: 15px;

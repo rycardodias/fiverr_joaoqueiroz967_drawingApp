@@ -2,9 +2,12 @@ import { setDefaultMode } from './modes/default.js'
 import { setPenMode } from './modes/pen.js'
 import { setSprayMode } from './modes/spray.js'
 import { setPatternMode } from './modes/pattern.js'
+import { stampsList } from './stamps.js';
+import { setStampMode } from './modes/stamp.js'
 
 let mousePressed = false;
 let currentMode = '';
+let currrentStamp = ''
 
 const modes = {
     default: '',
@@ -14,6 +17,8 @@ const modes = {
     pattern: 'pattern',
     hline: 'hline',
     square: 'square',
+
+    stamp: 'stamp'
 }
 
 export const setMouseEvents = (canvas) => {
@@ -39,6 +44,10 @@ export const setMouseEvents = (canvas) => {
             //     setPatternMode(canvas);
             //     break;
 
+            case modes.stamp:
+                setStampMode(canvas, currrentStamp)
+                currentMode = ''
+                break;
             default:
                 setDefaultMode(canvas);
                 break;
@@ -215,6 +224,23 @@ export const setButtonsOnClick = (canvas) => {
     }
 
 
+    // create onclick event to all stamps
+    stampsList.map((stamp) => {
+
+        document.getElementById(stamp).onclick = (e) => {
+            if (currentMode === modes.stamp) {
+                currentMode = modes.default
+                document.getElementById(e.target.id).classList.remove('contorno')
+
+                currrentStamp = ''
+            } else {
+                currentMode = modes.stamp
+
+                currrentStamp = e.target.id;
+            }
+        }
+
+    })
 
 
 }
