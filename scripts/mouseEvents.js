@@ -2,8 +2,8 @@ import { setDefaultMode } from './modes/default.js'
 import { setPenMode } from './modes/pen.js'
 import { setSprayMode } from './modes/spray.js'
 import { setPatternMode } from './modes/pattern.js'
-import { stampsList } from './stamps.js';
-import { backgroundsList } from './backgrounds.js';
+import { getStampLevel, getTotalStampsRows, setDecreaseStampLevel, setIncreaseStampLevel, stampsList, updateStampLayout } from './stamps.js';
+import { backgroundsList, updateBackgroundLayout, setIncreaseBackgroundLevel, setDecreaseBackgroundLevel, getBackgroundLevel, getTotalBackgroundRows } from './backgrounds.js';
 import { setStampMode } from './modes/stamp.js'
 import { removeBackgroundImage, setBackgroundImage } from './canvas.js';
 import { setCircleMode } from './modes/circle.js';
@@ -228,6 +228,33 @@ export const setButtonsOnClick = (canvas) => {
     }
 
 
+
+
+    // create onclick event to all backgrounds
+    backgroundsList.map((background) => {
+        document.getElementById(background).onclick = (e) => {
+            if (background === 'blank.jpg') {
+                return removeBackgroundImage(canvas)
+            }
+            setBackgroundImage(`images/backgrounds/${background}`, canvas)
+        }
+    })
+
+
+    document.getElementById('backgrounds-down-arrow').onclick = (e) => {
+        if ((getBackgroundLevel() + 1) * getTotalBackgroundRows() > backgroundsList.length) return
+        setIncreaseBackgroundLevel();
+        updateBackgroundLayout();
+    };
+
+    document.getElementById('backgrounds-up-arrow').onclick = (e) => {
+        if (getBackgroundLevel() === 0) return
+        setDecreaseBackgroundLevel();
+        updateBackgroundLayout()
+    };
+
+
+
     // create onclick event to all stamps
     stampsList.map((stamp) => {
         document.getElementById(stamp).onclick = (e) => {
@@ -241,15 +268,17 @@ export const setButtonsOnClick = (canvas) => {
         }
     })
 
-    // create onclick event to all backgrounds
-    backgroundsList.map((background) => {
-        document.getElementById(background).onclick = (e) => {
-            if (background === 'blank.jpg') {
-                return removeBackgroundImage(canvas)
-            }
-            setBackgroundImage(`images/backgrounds/${background}`, canvas)
-        }
-    })
+    document.getElementById('stamps-down-arrow').onclick = (e) => {
+        if ((getStampLevel() + 1) * getTotalStampsRows() > stampsList.length) return
+        setIncreaseStampLevel();
+        updateStampLayout();
+    };
+
+    document.getElementById('stamps-up-arrow').onclick = (e) => {
+        if (getStampLevel() === 0) return
+        setDecreaseStampLevel();
+        updateStampLayout()
+    };
 
 }
 
