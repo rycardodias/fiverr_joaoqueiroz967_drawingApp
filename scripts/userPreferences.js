@@ -11,31 +11,31 @@ export function setDrawingColor(color) {
 let lineSize = 1;
 
 export function getLineSize() {
-    return lineSize;
+    return parseInt(lineSize);
 }
 
 export function setLineSize(size) {
-    return lineSize = size;
+    return lineSize = parseInt(size);
 }
 
 let opacity = 1;
 
 export function getOpacity() {
-    return opacity;
+    return parseFloat(opacity);
 }
 
 export function setOpacity(value) {
-    return opacity = value;
+    return opacity = parseFloat(value);
 }
 
 let blur = 0;
 
 export function getBlur() {
-    return blur;
+    return parseInt(blur);
 }
 
 export function setBlur(value) {
-    return blur = value;
+    return blur = parseInt(value);
 }
 
 

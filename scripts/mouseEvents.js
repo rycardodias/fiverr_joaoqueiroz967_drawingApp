@@ -6,10 +6,13 @@ import { stampsList } from './stamps.js';
 import { backgroundsList } from './backgrounds.js';
 import { setStampMode } from './modes/stamp.js'
 import { removeBackgroundImage, setBackgroundImage } from './canvas.js';
+import { setCircleMode } from './modes/circle.js';
+import { setHLineMode } from './modes/hline.js';
+import { setSquareMode } from './modes/square.js';
 
 let mousePressed = false;
 let currentMode = '';
-let currrentStamp = ''
+let currentStamp = ''
 
 const modes = {
     default: '',
@@ -34,21 +37,26 @@ export const setMouseEvents = (canvas) => {
 
         switch (currentMode) {
             case modes.pen:
-                setPenMode(canvas);
+                setPenMode(canvas, mousePressed);
                 break;
             case modes.circle:
-
+                setCircleMode(canvas);
                 break;
             case modes.spray:
                 setSprayMode(canvas);
                 break;
-            // case modes.pattern:
-            //     setPatternMode(canvas);
-            //     break;
-
+            case modes.pattern:
+                setPatternMode(canvas);
+                break;
+            case modes.hline:
+                setHLineMode(canvas);
+                break;
+            case modes.square:
+                setSquareMode(canvas);
+                break;
             case modes.stamp:
-                setStampMode(canvas, e, currrentStamp)
-                currentMode = ''
+                setStampMode(canvas, e, currentStamp)
+                currentMode = modes.default
                 break;
             default:
                 setDefaultMode(canvas);
@@ -65,22 +73,21 @@ function setButtonMarked(id) {
     document.querySelectorAll('.pincel').forEach(item => {
         document.getElementById(item.id).classList.remove('contorno')
     });
-
     document.getElementById(id).classList.add('contorno')
 }
 
 export const setButtonsOnClick = (canvas) => {
-
-    document.getElementsByTagName('')
 
     document.getElementById('btn-pen').onclick = (e) => {
         setButtonMarked(e.target.id)
 
         if (currentMode === modes.pen) {
             currentMode = modes.default
+            setDefaultMode(canvas)
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.pen
+            setPenMode(canvas);
         }
     }
 
@@ -89,9 +96,11 @@ export const setButtonsOnClick = (canvas) => {
 
         if (currentMode === modes.circle) {
             currentMode = modes.default
+
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.circle
+            setCircleMode(canvas);
         }
     }
 
@@ -103,6 +112,7 @@ export const setButtonsOnClick = (canvas) => {
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.spray
+            setSprayMode(canvas);
         }
     }
 
@@ -114,6 +124,7 @@ export const setButtonsOnClick = (canvas) => {
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.pattern
+            setPatternMode(canvas);
         }
     }
 
@@ -130,7 +141,6 @@ export const setButtonsOnClick = (canvas) => {
 
     document.getElementById('btn-square').onclick = (e) => {
         setButtonMarked(e.target.id)
-
         if (currentMode === modes.square) {
             currentMode = modes.default
             document.getElementById(e.target.id).classList.remove('contorno')
@@ -145,9 +155,7 @@ export const setButtonsOnClick = (canvas) => {
                 canvas.remove(obj)
             }
         })
-
         removeBackgroundImage(canvas)
-
     }
 
     /// CHANGE CONTAINERS
@@ -156,13 +164,11 @@ export const setButtonsOnClick = (canvas) => {
 
     document.getElementById('div-cor').onclick = (e) => {
         document.getElementById('base-container').hidden = true
-
         document.getElementById('palette-container').hidden = false
     }
 
     document.getElementById('palette-back-arrow').onclick = (e) => {
         document.getElementById('base-container').hidden = false
-
         document.getElementById('palette-container').hidden = true
     }
 
@@ -170,13 +176,11 @@ export const setButtonsOnClick = (canvas) => {
 
     document.getElementById('btn-backgrounds').onclick = (e) => {
         document.getElementById('base-container').hidden = true
-
         document.getElementById('backgrounds-container').hidden = false
     }
 
     document.getElementById('backgrounds-back-arrow').onclick = (e) => {
         document.getElementById('base-container').hidden = false
-
         document.getElementById('backgrounds-container').hidden = true
     }
 
@@ -185,13 +189,11 @@ export const setButtonsOnClick = (canvas) => {
 
     document.getElementById('btn-stamps').onclick = (e) => {
         document.getElementById('base-container').hidden = true
-
         document.getElementById('stamps-container').hidden = false
     }
 
     document.getElementById('stamps-back-arrow').onclick = (e) => {
         document.getElementById('base-container').hidden = false
-
         document.getElementById('stamps-container').hidden = true
     }
 
@@ -199,19 +201,16 @@ export const setButtonsOnClick = (canvas) => {
 
     document.getElementById('btn-send').onclick = (e) => {
         document.getElementById('base-container').hidden = true
-
         document.getElementById('send-container').hidden = false
     }
 
     document.getElementById('send-back-arrow').onclick = (e) => {
         document.getElementById('base-container').hidden = false
-
         document.getElementById('send-container').hidden = true
     }
 
     document.getElementById('send-save').onclick = (e) => {
         document.getElementById('base-container').hidden = false
-
         document.getElementById('send-container').hidden = true
 
         var dataURL = canvas.toDataURL("image/jpeg", 1.0);
@@ -231,35 +230,26 @@ export const setButtonsOnClick = (canvas) => {
 
     // create onclick event to all stamps
     stampsList.map((stamp) => {
-
         document.getElementById(stamp).onclick = (e) => {
             if (currentMode === modes.stamp) {
                 currentMode = modes.default
-                document.getElementById(e.target.id).classList.remove('contorno')
-
-                currrentStamp = ''
+                currentStamp = ''
             } else {
                 currentMode = modes.stamp
-
-                currrentStamp = e.target.id;
+                currentStamp = e.target.id;
             }
         }
-
     })
 
     // create onclick event to all backgrounds
-
     backgroundsList.map((background) => {
-
         document.getElementById(background).onclick = (e) => {
             if (background === 'blank.jpg') {
                 return removeBackgroundImage(canvas)
             }
             setBackgroundImage(`images/backgrounds/${background}`, canvas)
         }
-
     })
-
 
 }
 

@@ -1,11 +1,23 @@
 import { getDrawingColor, getLineSize, getOpacity, getBlur } from '../userPreferences.js'
 import { addAlpha } from '../functions/colors.js';
 
-export const setPatternMode = (canvas) => {
+export const setSquareMode = (canvas) => {
+    var squarePatternBrush = new fabric.PatternBrush(canvas);
+    squarePatternBrush.getPatternSrc = function () {
 
-    var texturePatternBrush = new fabric.PatternBrush(canvas);
+        var squareWidth = 10, squareDistance = 2;
 
-    canvas.freeDrawingBrush = texturePatternBrush;
+        var patternCanvas = fabric.document.createElement('canvas');
+        patternCanvas.width = patternCanvas.height = squareWidth + squareDistance;
+        var ctx = patternCanvas.getContext('2d');
+
+        ctx.fillStyle = addAlpha(getDrawingColor(), getOpacity());
+        ctx.fillRect(0, 0, squareWidth, squareWidth);
+
+        return patternCanvas;
+    };
+
+    canvas.freeDrawingBrush = squarePatternBrush;
 
     var brush = canvas.freeDrawingBrush;
     brush.color = addAlpha(getDrawingColor(), getOpacity());
