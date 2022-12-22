@@ -219,7 +219,9 @@ export const setButtonsOnClick = (canvas) => {
 
         var dataURL = canvas.toDataURL("image/jpeg", 1.0);
 
-        downloadImage(dataURL, 'my-canvas.jpeg');
+        let name = prompt("Por favor, introduza o seu nome", "");
+
+        downloadImage(dataURL, `${Date.now()}_${name.replace(' ', '')}.jpeg`);
 
         // Save | Download image
         function downloadImage(data, filename = 'untitled.jpeg') {
