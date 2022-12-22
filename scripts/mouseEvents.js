@@ -192,6 +192,11 @@ export const setButtonsOnClick = (canvas) => {
     // change to stamps-container
 
     document.getElementById('btn-stamps').onclick = (e) => {
+        // canvas.freeDrawingBrush = undefined
+        currentMode = modes.stamps
+        setDefaultMode(canvas)
+        // canvas.isDrawingMode = true;
+        // canvas.renderAll();
         document.getElementById('base-container').hidden = true
         document.getElementById('stamps-container').hidden = false
     }
