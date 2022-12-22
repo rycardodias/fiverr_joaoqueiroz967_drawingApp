@@ -227,12 +227,9 @@ export const setButtonsOnClick = (canvas) => {
         }
     }
 
-
-
-
     // create onclick event to all backgrounds
     backgroundsList.map((background) => {
-        document.getElementById(background).onclick = (e) => {
+        document.getElementById("background_" + background).onclick = (e) => {
             if (background === 'blank.jpg') {
                 return removeBackgroundImage(canvas)
             }
@@ -253,17 +250,15 @@ export const setButtonsOnClick = (canvas) => {
         updateBackgroundLayout()
     };
 
-
-
-    // create onclick event to all stamps
-    stampsList.map((stamp) => {
-        document.getElementById(stamp).onclick = (e) => {
+    stampsList.map(item => {
+        document.getElementById("stamps_" + item).onclick = (e) => {
             if (currentMode === modes.stamp) {
                 currentMode = modes.default
                 currentStamp = ''
             } else {
                 currentMode = modes.stamp
-                currentStamp = e.target.id;
+                currentStamp = item;
+
             }
         }
     })

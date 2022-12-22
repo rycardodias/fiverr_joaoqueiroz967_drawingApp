@@ -1,6 +1,6 @@
-export const backgroundsList = ["blank.jpg", "sky.jpg", "desert.png", "1.png", "2.png", "3.png", "4.png"];
+export const backgroundsList = ["blank.jpg", "sky.jpg", "desert.png"];
 let backgroundLevel = 0;
-const totalBackgroundRows = 3
+const totalBackgroundRows = 2
 
 export function getBackgroundLevel() {
     return backgroundLevel;
@@ -19,18 +19,18 @@ export function setDecreaseBackgroundLevel() {
 };
 
 export const getBackgrounds = () => {
-    let htmlStamps = "<div class=\"container\" id=\"container-backgrounds-list\">"
-    htmlStamps += "<div class=\"row\">"
+    let html = "<div class=\"container\" id=\"container-backgrounds-list\">"
+    html += "<div class=\"row\">"
 
     backgroundsList.map((background, index) => {
-        htmlStamps += "<div class=\"col-12\" >"
-        htmlStamps += `<img ${index > getTotalBackgroundRows() - 1 && " hidden "} style=\"width:100%; height: 6rem; padding-bottom: 15px\" id=\"${background}\" class=\"background-list-item\" src=\"images/backgrounds/${background}\">`
-        htmlStamps += "</div>";
+        html += "<div class=\"col-12\" >"
+        html += `<img ${index > getTotalBackgroundRows() - 1 && " hidden "} style=\"width:100%; height: 6rem; padding-bottom: 15px\" id=\"background_${background}\" class=\"background-list-item\" src=\"images/backgrounds/${background}\">`
+        html += "</div>";
     })
 
-    htmlStamps += "</div></div>";
+    html += "</div></div>";
 
-    document.getElementById('div-backgrounds').innerHTML = htmlStamps;
+    document.getElementById('div-backgrounds').innerHTML = html;
 
 };
 
@@ -41,9 +41,9 @@ export const updateBackgroundLayout = () => {
 
     backgroundsList.map((background, index) => {
         if (index >= initial && index < final) {
-            document.getElementById(background).hidden = false
+            document.getElementById('background_' + background).hidden = false
         } else {
-            document.getElementById(background).hidden = true
+            document.getElementById('background_' + background).hidden = true
         }
     })
 }
