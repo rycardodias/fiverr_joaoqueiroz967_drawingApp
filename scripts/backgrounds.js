@@ -1,6 +1,6 @@
 export const backgroundsList = ["blank.jpg", "sky.jpg", "desert.png"];
 let backgroundLevel = 0;
-const totalBackgroundRows = 2
+const totalBackgroundRows = 4
 
 export function getBackgroundLevel() {
     return backgroundLevel;

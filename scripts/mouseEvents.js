@@ -9,9 +9,11 @@ import { removeBackgroundImage, setBackgroundImage } from './canvas.js';
 import { setCircleMode } from './modes/circle.js';
 import { setHLineMode } from './modes/hline.js';
 import { setSquareMode } from './modes/square.js';
+import { addAlpha } from './functions/colors.js';
+import { getBlur, getDrawingColor, getLineSize, getOpacity, setDecreaseLineSize, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples } from './userPreferences.js';
 
 let mousePressed = false;
-let currentMode = '';
+export let currentMode = '';
 let currentStamp = ''
 
 const modes = {
@@ -136,6 +138,7 @@ export const setButtonsOnClick = (canvas) => {
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.hline
+            setHLineMode(canvas)
         }
     }
 
@@ -146,6 +149,7 @@ export const setButtonsOnClick = (canvas) => {
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.square
+            setSquareMode(canvas)
         }
     }
 
@@ -274,6 +278,65 @@ export const setButtonsOnClick = (canvas) => {
         setDecreaseStampLevel();
         updateStampLayout()
     };
+
+    // Change values + -
+    document.getElementById('btn-linesize-decrease').onclick = (e) => {
+        const element = document.getElementById('input-linesize')
+        element.value--;
+        canvas.freeDrawingBrush.width = 10 + parseInt((element.value) * sizeMultiples[currentMode]);
+        setDecreaseLineSize()
+    }
+
+    document.getElementById('btn-linesize-increase').onclick = (e) => {
+        const element = document.getElementById('input-linesize')
+        element.value++;
+        canvas.freeDrawingBrush.width = 10 + parseInt((element.value) * sizeMultiples[currentMode]);
+        setIncreaseLineSize()
+    }
+
+    document.getElementById('btn-opacity-decrease').onclick = (e) => {
+        const element = document.getElementById('input-opacity')
+        element.value--;
+        canvas.freeDrawingBrush.color = addAlpha(getDrawingColor(), element.value / 10);
+        return setOpacity(element.value / 10)
+    }
+
+    document.getElementById('btn-opacity-increase').onclick = (e) => {
+        const element = document.getElementById('input-opacity')
+        element.value++;
+        canvas.freeDrawingBrush.color = addAlpha(getDrawingColor(), element.value / 10);
+        return setOpacity(element.value / 10)
+    }
+
+    document.getElementById('btn-blur-decrease').onclick = (e) => {
+        const element = document.getElementById('input-blur')
+        element.value--;
+
+        canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+            blur: parseInt(element.value * 10, 10),
+            offsetX: 0,
+            offsetY: 0,
+            affectStroke: true,
+            color: addAlpha(getDrawingColor(), getOpacity()),
+        });
+
+        return setBlur(element.value * 10)
+    }
+
+    document.getElementById('btn-blur-increase').onclick = (e) => {
+        const element = document.getElementById('input-blur')
+        element.value++;
+
+        canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+            blur: parseInt(element.value * 10, 10),
+            offsetX: 0,
+            offsetY: 0,
+            affectStroke: true,
+            color: addAlpha(getDrawingColor(), getOpacity()),
+        });
+
+        return setBlur(element.value * 10)
+    }
 
 }
 

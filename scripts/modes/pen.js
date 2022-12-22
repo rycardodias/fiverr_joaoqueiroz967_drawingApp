@@ -1,13 +1,11 @@
-import { getDrawingColor, getLineSize, getOpacity, getBlur } from '../userPreferences.js'
+import { getDrawingColor, getLineSize, getOpacity, getBlur, sizeMultiples } from '../userPreferences.js'
 import { addAlpha } from '../functions/colors.js';
 
 export const setPenMode = (canvas) => {
-  
   canvas.freeDrawingBrush = new fabric.PencilBrush(canvas)
   canvas.freeDrawingBrush.color = addAlpha(getDrawingColor(), getOpacity());
-  canvas.freeDrawingBrush.width = getLineSize() * 2
+  canvas.freeDrawingBrush.width = 10 + getLineSize() * sizeMultiples.pen
 
-  //add shadow
   var brush = canvas.freeDrawingBrush;
 
   brush.shadow = new fabric.Shadow({

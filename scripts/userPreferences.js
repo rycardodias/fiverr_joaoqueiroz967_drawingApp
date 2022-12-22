@@ -18,6 +18,14 @@ export function setLineSize(size) {
     return lineSize = parseInt(size);
 }
 
+export function setIncreaseLineSize() {
+    return lineSize++;
+}
+
+export function setDecreaseLineSize() {
+    return lineSize--;
+}
+
 let opacity = 1;
 
 export function getOpacity() {
@@ -36,6 +44,15 @@ export function getBlur() {
 
 export function setBlur(value) {
     return blur = parseInt(value);
+}
+
+export const sizeMultiples = {
+    pen: 3,
+    circle: 5,
+    spray: 5,
+    pattern: 5,
+    hline: 5,
+    square: 7
 }
 
 

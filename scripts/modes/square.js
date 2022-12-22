@@ -1,4 +1,4 @@
-import { getDrawingColor, getLineSize, getOpacity, getBlur } from '../userPreferences.js'
+import { getDrawingColor, getLineSize, getOpacity, getBlur, sizeMultiples } from '../userPreferences.js'
 import { addAlpha } from '../functions/colors.js';
 
 export const setSquareMode = (canvas) => {
@@ -24,7 +24,7 @@ export const setSquareMode = (canvas) => {
     if (brush.getPatternSrc) {
         brush.source = brush.getPatternSrc.call(brush);
     }
-    brush.width = parseInt(getLineSize() * 5, 10);
+    brush.width = parseInt(10 + getLineSize() * sizeMultiples.square, 10);
     brush.shadow = new fabric.Shadow({
         blur: parseInt(getBlur(), 10),
         offsetX: 0,
