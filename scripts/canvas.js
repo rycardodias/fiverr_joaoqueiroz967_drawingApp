@@ -4,8 +4,8 @@ export const initCanvas = (id) => {
     var offsetWidth = document.getElementById('left-bar').offsetWidth;
 
     return new fabric.Canvas(id, {
-        width: offsetWidth * 0.98,
-        height: window.innerHeight * 0.98,
+        width: window.innerWidth * (10/12)*0.99,
+        height: window.innerHeight,
         selection: false,
     });
 };
