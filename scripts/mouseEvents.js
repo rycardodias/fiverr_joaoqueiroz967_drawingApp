@@ -10,7 +10,7 @@ import { setCircleMode } from './modes/circle.js';
 import { setHLineMode } from './modes/hline.js';
 import { setSquareMode } from './modes/square.js';
 import { addAlpha } from './functions/colors.js';
-import { getBlur, getDrawingColor, getLineSize, getOpacity, setDecreaseLineSize, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples } from './userPreferences.js';
+import { getBlur, getDrawingColor, getLineSize, getOpacity, setDecreaseLineSize, setDrawingColor, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples } from './userPreferences.js';
 
 let mousePressed = false;
 export let currentMode = '';
@@ -344,6 +344,19 @@ export const setButtonsOnClick = (canvas) => {
 
         return setBlur(element.value * 10)
     }
+
+
+    var picker = document.getElementById('picker') // get the color picker element
+    function colorChanged(event) {
+        var color = event.detail[0] // get the color
+        picker.value = color // set the value of the picker to the selected color
+
+        setDrawingColor(color)
+        document.getElementById('div-cor').style.backgroundColor = color
+        canvas.freeDrawingBrush.color = addAlpha(color, getOpacity());
+
+    }
+    picker.addEventListener('change', colorChanged)
 
 }
 
