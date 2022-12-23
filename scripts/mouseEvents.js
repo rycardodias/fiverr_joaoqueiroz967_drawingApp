@@ -68,6 +68,14 @@ export const setMouseEvents = (canvas) => {
 
     canvas.on('mouse:up', (e) => {
         mousePressed = false;
+        const objects = canvas.getObjects();
+        if (objects.length > 0) {
+            console.log(currentMode)
+            if (currentMode !== modes.stamp && currentMode !== modes.default) {
+                objects[objects.length - 1].selectable = false
+                objects[objects.length - 1].evented = false
+            }
+        }
     });
 };
 
@@ -75,7 +83,8 @@ function setButtonMarked(id) {
     document.querySelectorAll('.pincel').forEach(item => {
         document.getElementById(item.id).classList.remove('contorno')
     });
-    document.getElementById(id).classList.add('contorno')
+    if (id)
+        document.getElementById(id).classList.add('contorno')
 }
 
 export const setButtonsOnClick = (canvas) => {
@@ -185,6 +194,9 @@ export const setButtonsOnClick = (canvas) => {
     // change to backgrounds container
 
     document.getElementById('btn-backgrounds').onclick = (e) => {
+        currentMode = modes.default
+        setDefaultMode(canvas)
+        setButtonMarked()
         document.getElementById('base-container').hidden = true
         document.getElementById('backgrounds-container').hidden = false
     }
@@ -201,6 +213,7 @@ export const setButtonsOnClick = (canvas) => {
         // canvas.freeDrawingBrush = undefined
         currentMode = modes.stamps
         setDefaultMode(canvas)
+        setButtonMarked()
         // canvas.isDrawingMode = true;
         // canvas.renderAll();
         document.getElementById('base-container').hidden = true
