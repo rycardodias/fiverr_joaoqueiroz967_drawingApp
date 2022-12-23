@@ -347,15 +347,22 @@ export const setButtonsOnClick = (canvas) => {
 
 
     var picker = document.getElementById('picker') // get the color picker element
+
     function colorChanged(event) {
         var color = event.detail[0] // get the color
         picker.value = color // set the value of the picker to the selected color
 
         setDrawingColor(color)
         document.getElementById('div-cor').style.backgroundColor = color
-        canvas.freeDrawingBrush.color = addAlpha(color, getOpacity());
+
+        var brush = canvas.freeDrawingBrush;
+        brush.color = addAlpha(color, getOpacity());
+        if (brush.getPatternSrc) {
+            brush.source = brush.getPatternSrc.call(brush);
+        }
 
     }
+
     picker.addEventListener('change', colorChanged)
 
 }
