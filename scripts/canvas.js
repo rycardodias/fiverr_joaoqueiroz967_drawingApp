@@ -21,8 +21,8 @@ export const removeBackgroundImage = (canvas) => {
 };
 
 export const resizeCanvas = (canvas) => {
-    canvas.setWidth(canvasRow.offsetWidth * 0.70);
-    canvas.setHeight(window.innerHeight * 0.8);
+    canvas.setWidth(window.innerWidth * (10 / 12));
+    canvas.setHeight(window.innerHeight * 0.999);
     canvas.calcOffset();
 }
 

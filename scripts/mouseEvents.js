@@ -98,7 +98,7 @@ export const setButtonsOnClick = (canvas) => {
 
         if (currentMode === modes.circle) {
             currentMode = modes.default
-
+            setDefaultMode(canvas)
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.circle
@@ -111,6 +111,8 @@ export const setButtonsOnClick = (canvas) => {
 
         if (currentMode === modes.spray) {
             currentMode = modes.default
+            setDefaultMode(canvas)
+
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.spray
@@ -123,6 +125,8 @@ export const setButtonsOnClick = (canvas) => {
 
         if (currentMode === modes.pattern) {
             currentMode = modes.default
+            setDefaultMode(canvas)
+
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.pattern
@@ -135,6 +139,7 @@ export const setButtonsOnClick = (canvas) => {
 
         if (currentMode === modes.hline) {
             currentMode = modes.default
+            setDefaultMode(canvas)
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.hline
@@ -146,6 +151,7 @@ export const setButtonsOnClick = (canvas) => {
         setButtonMarked(e.target.id)
         if (currentMode === modes.square) {
             currentMode = modes.default
+            setDefaultMode(canvas)
             document.getElementById(e.target.id).classList.remove('contorno')
         } else {
             currentMode = modes.square
