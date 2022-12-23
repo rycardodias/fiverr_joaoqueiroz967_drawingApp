@@ -1,11 +1,9 @@
 const canvasRow = document.getElementById('row-center')
 
 export const initCanvas = (id) => {
-    var offsetWidth = document.getElementById('left-bar').offsetWidth;
-
     return new fabric.Canvas(id, {
-        width: window.innerWidth * (10/12)*0.99,
-        height: window.innerHeight,
+        width: window.innerWidth * (10 / 12),
+        height: window.innerHeight * 0.999,
         selection: false,
     });
 };
