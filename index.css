@@ -53,6 +53,11 @@ h5 {
     text-align: center;
 }
 
+#base-container #container-controls {
+    margin: 15px 0px 15px 0px;
+    text-align: center;
+}
+
 /* PALETE CONTAINER */
 #palette-container {
     margin-top: 15px;

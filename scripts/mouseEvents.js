@@ -24,9 +24,10 @@ const modes = {
     pattern: 'pattern',
     hline: 'hline',
     square: 'square',
-
     stamp: 'stamp'
 }
+
+
 
 export const setMouseEvents = (canvas) => {
 
@@ -36,6 +37,15 @@ export const setMouseEvents = (canvas) => {
 
     canvas.on('mouse:down', (e) => {
         mousePressed = true;
+
+
+        if (canvas.getActiveObject()) {
+            document.getElementById('container-controls').hidden = false;
+        } else {
+            document.getElementById('container-controls').hidden = true;
+        }
+
+
 
         switch (currentMode) {
             case modes.pen:
@@ -69,13 +79,22 @@ export const setMouseEvents = (canvas) => {
     canvas.on('mouse:up', (e) => {
         mousePressed = false;
         const objects = canvas.getObjects();
+
+        objects.forEach((object) => {
+            object.onclick = () => {
+                console.log("click")
+            }
+        })
+
         if (objects.length > 0) {
-            console.log(currentMode)
-            if (currentMode !== modes.stamp && currentMode !== modes.default) {
+            if (objects[objects.length - 1].get('type') !== 'image') {
                 objects[objects.length - 1].selectable = false
                 objects[objects.length - 1].evented = false
             }
         }
+
+        // canvas.remove(canvas.getActiveObject());
+
     });
 };
 
@@ -88,6 +107,12 @@ function setButtonMarked(id) {
 }
 
 export const setButtonsOnClick = (canvas) => {
+
+    document.getElementById('btn-remove-stamp').onclick = (e) => {
+        canvas.remove(canvas.getActiveObject())
+        document.getElementById('container-controls').hidden = true;
+     }
+
 
     document.getElementById('btn-pen').onclick = (e) => {
         setButtonMarked(e.target.id)
