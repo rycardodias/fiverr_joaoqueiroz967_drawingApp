@@ -10,7 +10,10 @@ import { setCircleMode } from './modes/circle.js';
 import { setHLineMode } from './modes/hline.js';
 import { setSquareMode } from './modes/square.js';
 import { addAlpha } from './functions/colors.js';
-import { getBlur, getDrawingColor, getLineSize, getOpacity, setDecreaseLineSize, setDrawingColor, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples } from './userPreferences.js';
+import {
+    getBlur, setBlur, getDrawingColor, getLineSize, getOpacity, setDecreaseLineSize,
+    setDrawingColor, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples
+} from './userPreferences.js';
 
 let mousePressed = false;
 export let currentMode = '';
@@ -111,7 +114,7 @@ export const setButtonsOnClick = (canvas) => {
     document.getElementById('btn-remove-stamp').onclick = (e) => {
         canvas.remove(canvas.getActiveObject())
         document.getElementById('container-controls').hidden = true;
-     }
+    }
 
 
     document.getElementById('btn-pen').onclick = (e) => {
