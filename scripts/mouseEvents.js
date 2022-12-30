@@ -410,6 +410,14 @@ export const setButtonsOnClick = (canvas) => {
             brush.source = brush.getPatternSrc.call(brush);
         }
 
+        canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+            blur: getBlur(),
+            offsetX: 0,
+            offsetY: 0,
+            affectStroke: true,
+            color: addAlpha(getDrawingColor(), getOpacity()),
+        });
+
     }
 
     picker.addEventListener('change', colorChanged)

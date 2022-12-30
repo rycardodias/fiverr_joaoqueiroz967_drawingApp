@@ -28,15 +28,16 @@ export function changeEvents(canvas) {
         return setBlur(e.target.value * 10)
     });
 
-    document.getElementById('picker').addEventListener('change', (e) => {
-        canvas.freeDrawingBrush.shadow = new fabric.Shadow({
-            blur: getBlur(),
-            offsetX: 0,
-            offsetY: 0,
-            affectStroke: true,
-            color: addAlpha(getDrawingColor(), getOpacity()),
-        });
-    });
+    // document.getElementById('picker').addEventListener('change', (e) => {
+    //     // console.log('getDrawingColor()', getDrawingColor())
+    //     // canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+    //     //     blur: getBlur(),
+    //     //     offsetX: 0,
+    //     //     offsetY: 0,
+    //     //     affectStroke: true,
+    //     //     color: addAlpha(getDrawingColor(), getOpacity()),
+    //     // });
+    // });
 }
 
 
