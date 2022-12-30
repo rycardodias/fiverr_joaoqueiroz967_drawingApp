@@ -2,7 +2,7 @@ import { setDefaultMode } from './modes/default.js'
 import { setPenMode } from './modes/pen.js'
 import { setSprayMode } from './modes/spray.js'
 import { setPatternMode } from './modes/pattern.js'
-import { getStampLevel, getTotalStampsRows, setDecreaseStampLevel, setIncreaseStampLevel, stampsList, updateStampLayout } from './stamps.js';
+import { getStampLevel, getTotalStampsRows, setDecreaseStampLevel, setIncreaseStampLevel, stampsList, updateStampLayout, setStampMarked } from './stamps.js';
 import { backgroundsList, updateBackgroundLayout, setIncreaseBackgroundLevel, setDecreaseBackgroundLevel, getBackgroundLevel, getTotalBackgroundRows } from './backgrounds.js';
 import { setStampMode } from './modes/stamp.js'
 import { removeBackgroundImage, setBackgroundImage } from './canvas.js';
@@ -72,6 +72,7 @@ export const setMouseEvents = (canvas) => {
             case modes.stamp:
                 setStampMode(canvas, e, currentStamp)
                 currentMode = modes.default
+                setStampMarked()
                 break;
             default:
                 setDefaultMode(canvas);
@@ -85,7 +86,7 @@ export const setMouseEvents = (canvas) => {
 
         objects.forEach((object) => {
             object.onclick = () => {
-                console.log("click")
+                console.log("click", object)
             }
         })
 
@@ -103,11 +104,13 @@ export const setMouseEvents = (canvas) => {
 
 function setButtonMarked(id) {
     document.querySelectorAll('.pincel').forEach(item => {
+
         document.getElementById(item.id).classList.remove('contorno')
     });
     if (id)
         document.getElementById(id).classList.add('contorno')
 }
+
 
 export const setButtonsOnClick = (canvas) => {
 
@@ -271,9 +274,9 @@ export const setButtonsOnClick = (canvas) => {
 
         var dataURL = canvas.toDataURL("image/jpeg", 1.0);
 
-        let name = prompt("Por favor, introduza o seu nome", "");
+        // let name = prompt("Por favor, introduza o seu nome", "");
 
-        downloadImage(dataURL, `${Date.now()}_${name.replace(' ', '')}.jpeg`);
+        downloadImage(dataURL, `${Date.now()}_${"desenho"}.jpeg`);
 
         // Save | Download image
         function downloadImage(data, filename = 'untitled.jpeg') {
@@ -309,13 +312,25 @@ export const setButtonsOnClick = (canvas) => {
     };
 
     stampsList.map(item => {
-        document.getElementById("stamps_" + item).onclick = (e) => {
+
+        const stampName = "stamps_" + item
+        document.getElementById(stampName).onclick = (e) => {
+            setStampMarked(stampName)
+
+            const alreadyMarked = document.getElementById(stampName).classList.contains('contorno')
+
             if (currentMode === modes.stamp) {
                 currentMode = modes.default
                 currentStamp = ''
             } else {
                 currentMode = modes.stamp
                 currentStamp = item;
+
+                if (!alreadyMarked) {
+                    currentMode = modes.default
+                    currentStamp = ''
+                }
+
 
             }
         }

@@ -23,8 +23,8 @@ export const getStamps = () => {
     htmlStamps += "<div class=\"row\">"
 
     stampsList.map((item, index) => {
-        htmlStamps += `<div class=\"col-lg-6 col-md-6 col-sm-12\" id=\"col_stamps_${item}"\>`
-        htmlStamps += `<img ${index > getTotalStampsRows() - 1 && " hidden "} style=\"width:100%; height: 6rem; padding-bottom: 15px\" id=\"stamps_${item}\" class=\"stamps-list-item\" src=\"images/stamps/${item}\">`
+        htmlStamps += `<div class=\"col-lg-6 col-md-6 col-sm-12\" id=\"col_stamps_${item}"\ style=\"height: auto\">`
+        htmlStamps += `<img class=\"stamp\" ${index > getTotalStampsRows() - 1 && " hidden "} style=\"width:100%; height: 6rem; padding-bottom: 15px\" id=\"stamps_${item}\" class=\"stamps-list-item\" src=\"images/stamps/${item}\">`
         htmlStamps += "</div>";
     })
 
@@ -40,7 +40,6 @@ export const updateStampLayout = () => {
     const final = initial + getTotalStampsRows()
 
     stampsList.map((item, index) => {
-        console.log(index >= initial && index < final, index)
         if (index >= initial && index < final) {
             document.getElementById('col_stamps_' + item).hidden = false
             document.getElementById('stamps_' + item).hidden = false
@@ -49,5 +48,22 @@ export const updateStampLayout = () => {
             document.getElementById('stamps_' + item).hidden = true
         }
     })
-    console.log('##############')
+}
+
+export const setStampMarked = (id) => {
+    let alreadyMarked;
+
+    if (id) {
+        alreadyMarked = document.getElementById(id).classList.contains('contorno')
+    }
+
+    document.querySelectorAll('.stamp').forEach(item => {
+        document.getElementById(item.id).classList.remove('contorno')
+    });
+
+    if (!id) return
+
+    if (!alreadyMarked) {
+        document.getElementById(id).classList.add('contorno')
+    }
 }
