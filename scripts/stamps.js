@@ -23,8 +23,9 @@ export const getStamps = () => {
     htmlStamps += "<div class=\"row\">"
 
     stampsList.map((item, index) => {
-        htmlStamps += `<div class=\"col-lg-6 col-md-6 col-sm-12\" id=\"col_stamps_${item}"\ style=\"height: auto\">`
-        htmlStamps += `<img class=\"stamp\" ${index > getTotalStampsRows() - 1 && " hidden "} style=\"width:100%; height: 6rem; padding-bottom: 15px\" id=\"stamps_${item}\" class=\"stamps-list-item\" src=\"images/stamps/${item}\">`
+        htmlStamps += `<div class=\"col-lg-6 col-md-6 col-sm-12\" id=\"col_stamps_${item}"\ >`
+        htmlStamps += `<img  ${index > getTotalStampsRows() - 1 && " hidden "} id=\"stamps_${item}\" class=\"stamps-list-item\" `
+        htmlStamps += `style=\"width:100%; height: auto; background-color: #9BA09C; margin-bottom: 15px  \" src=\"images/stamps/${item}\">`
         htmlStamps += "</div>";
     })
 
@@ -57,7 +58,7 @@ export const setStampMarked = (id) => {
         alreadyMarked = document.getElementById(id).classList.contains('contorno')
     }
 
-    document.querySelectorAll('.stamp').forEach(item => {
+    document.querySelectorAll('.stamps-list-item').forEach(item => {
         document.getElementById(item.id).classList.remove('contorno')
     });
 
