@@ -48,36 +48,12 @@ export const setMouseEvents = (canvas) => {
             document.getElementById('container-controls').hidden = true;
         }
 
-
-
-        switch (currentMode) {
-            case modes.pen:
-                setPenMode(canvas, mousePressed);
-                break;
-            case modes.circle:
-                setCircleMode(canvas);
-                break;
-            case modes.spray:
-                setSprayMode(canvas);
-                break;
-            case modes.pattern:
-                setPatternMode(canvas);
-                break;
-            case modes.hline:
-                setHLineMode(canvas);
-                break;
-            case modes.square:
-                setSquareMode(canvas);
-                break;
-            case modes.stamp:
-                setStampMode(canvas, e, currentStamp)
-                currentMode = modes.default
-                setStampMarked()
-                break;
-            default:
-                setDefaultMode(canvas);
-                break;
+        if (currentMode === modes.stamp) {
+            setStampMode(canvas, e, currentStamp)
+            currentMode = modes.default
+            setStampMarked()
         }
+
     });
 
     canvas.on('mouse:up', (e) => {
