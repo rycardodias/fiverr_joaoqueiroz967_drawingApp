@@ -1,10 +1,8 @@
 import { addAlpha } from './functions/colors.js';
 import { currentMode } from './mouseEvents.js';
-import { setDrawingColor, setLineSize, setOpacity, setBlur, sizeMultiples, getDrawingColor, getOpacity } from './userPreferences.js'
+import { setDrawingColor, setLineSize, setOpacity, setBlur, sizeMultiples, getDrawingColor, getOpacity, getBlur } from './userPreferences.js'
 
-// document.getElementById('input-color').addEventListener('change', (e) => {
-//     return setDrawingColor(e.target.value)
-// });
+
 
 export function changeEvents(canvas) {
     document.getElementById('input-linesize').addEventListener('change', (e) => {
@@ -16,6 +14,7 @@ export function changeEvents(canvas) {
         canvas.freeDrawingBrush.color = addAlpha(getDrawingColor(), e.target.value / 10);
         return setOpacity(e.target.value / 10)
     });
+
     document.getElementById('input-blur').addEventListener('change', (e) => {
 
         canvas.freeDrawingBrush.shadow = new fabric.Shadow({
@@ -27,6 +26,16 @@ export function changeEvents(canvas) {
         });
 
         return setBlur(e.target.value * 10)
+    });
+
+    document.getElementById('picker').addEventListener('change', (e) => {
+        canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+            blur: getBlur(),
+            offsetX: 0,
+            offsetY: 0,
+            affectStroke: true,
+            color: addAlpha(getDrawingColor(), getOpacity()),
+        });
     });
 }
 
