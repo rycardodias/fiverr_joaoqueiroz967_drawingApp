@@ -24,7 +24,7 @@ export const getBackgrounds = () => {
 
     backgroundsList.map((background, index) => {
         html += "<div class=\"col-12\" >"
-        html += `<img ${index > getTotalBackgroundRows() - 1 && " hidden "} style=\"width:100%; height: 6rem; padding-bottom: 15px\" id=\"background_${background}\" class=\"background-list-item\" src=\"images/backgrounds/${background}\">`
+        html += `<img ${index > getTotalBackgroundRows() - 1 && " hidden "} style=\"width:100%; height: auto; margin-bottom: 15px\" id=\"background_${background}\" class=\"background-list-item\" src=\"images/backgrounds/${background}\">`
         html += "</div>";
     })
 

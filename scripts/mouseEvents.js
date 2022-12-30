@@ -251,13 +251,37 @@ export const setButtonsOnClick = (canvas) => {
         }
     }
 
+    function setBackgroundMarked(id, background) {
+        let alreadyMarked;
+
+        if (id) {
+            alreadyMarked = document.getElementById(id).classList.contains('contorno')
+        }
+
+        document.querySelectorAll('.background-list-item').forEach(item => {
+            document.getElementById(item.id).classList.remove('contorno')
+
+        });
+
+        if (!id) return
+
+        if (!alreadyMarked) {
+            document.getElementById(id).classList.add('contorno')
+            setBackgroundImage(`images/backgrounds/${background}`, canvas)
+        } else {
+            removeBackgroundImage(canvas)
+        }
+    }
+
+
     // create onclick event to all backgrounds
     backgroundsList.map((background) => {
         document.getElementById("background_" + background).onclick = (e) => {
-            if (background === 'blank.jpg') {
-                return removeBackgroundImage(canvas)
-            }
-            setBackgroundImage(`images/backgrounds/${background}`, canvas)
+            setBackgroundMarked("background_" + background, background)
+            // if (background === 'blank.jpg') {
+            //     return removeBackgroundImage(canvas)
+            // }
+            // setBackgroundImage(`images/backgrounds/${background}`, canvas)
         }
     })
 
