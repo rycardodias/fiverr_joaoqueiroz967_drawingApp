@@ -41,13 +41,6 @@ export const setMouseEvents = (canvas) => {
     canvas.on('mouse:down', (e) => {
         mousePressed = true;
 
-
-        if (canvas.getActiveObject()) {
-            document.getElementById('container-controls').hidden = false;
-        } else {
-            document.getElementById('container-controls').hidden = true;
-        }
-
         if (currentMode === modes.stamp) {
             setStampMode(canvas, e, currentStamp)
             currentMode = modes.default
@@ -89,12 +82,6 @@ function setButtonMarked(id) {
 
 
 export const setButtonsOnClick = (canvas) => {
-
-    document.getElementById('btn-remove-stamp').onclick = (e) => {
-        canvas.remove(canvas.getActiveObject())
-        document.getElementById('container-controls').hidden = true;
-    }
-
 
     document.getElementById('btn-pen').onclick = (e) => {
         setButtonMarked(e.target.id)
