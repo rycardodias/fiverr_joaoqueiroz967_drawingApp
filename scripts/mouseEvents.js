@@ -15,6 +15,7 @@ import {
     setDrawingColor, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples
 } from './userPreferences.js';
 
+
 let mousePressed = false;
 export let currentMode = '';
 let currentStamp = ''
@@ -235,11 +236,23 @@ export const setButtonsOnClick = (canvas) => {
         document.getElementById('base-container').hidden = false
         document.getElementById('send-container').hidden = true
 
-        var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+        var dataURL = canvas.toDataURL();
 
         // let name = prompt("Por favor, introduza o seu nome", "");
 
-        downloadImage(dataURL, `${Date.now()}_${"desenho"}.jpeg`);
+
+        fetch('/saveImage', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                imgBase64: dataURL
+            })
+        })
+
+        // downloadImage(dataURL, `${Date.now()}_${"desenho"}.jpeg`);
 
         // Save | Download image
         function downloadImage(data, filename = 'untitled.jpeg') {
