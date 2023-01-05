@@ -61,6 +61,7 @@ function renderRotateIcon(ctx, left, top, styleOverride, fabricObject) {
 fabric.Object.prototype.controls.rotate = new fabric.Control({
     x: 0.6,
     y: -0.2,
+    cornerSize: 500,
     actionHandler: fabric.controlsUtils.rotationWithSnapping,//change to this
     actionName: 'rotate',
     cursorStyle: 'pointer',

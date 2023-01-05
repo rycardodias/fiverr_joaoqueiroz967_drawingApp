@@ -85,7 +85,7 @@ h5 {
 }
 
 
-/* BACKGROUNDS CONTAINER */
+/* STAMPS CONTAINER */
 #stamps-container {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -97,6 +97,21 @@ h5 {
 }
 
 #stamps-container #container-stamps-list {
+    margin-bottom: 15px;
+}
+
+/* OVERLAYS CONTAINER */
+#overlays-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#overlays-container img {
+    width: 50px;
+}
+
+#overlays-container #container-overlays-list {
     margin-bottom: 15px;
 }
 

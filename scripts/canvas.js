@@ -1,5 +1,3 @@
-const canvasRow = document.getElementById('row-center')
-
 export const initCanvas = (id) => {
     return new fabric.Canvas(id, {
         width: window.innerWidth * (10 / 12),
@@ -25,4 +23,14 @@ export const resizeCanvas = (canvas) => {
     canvas.setHeight(window.innerHeight * 0.999);
     canvas.calcOffset();
 }
+
+export const setOverlayImage = (url, canvas) => {
+    canvas.setOverlayImage(url, canvas.renderAll.bind(canvas));
+}
+
+export const removeOverlayImage = (canvas) => {
+    canvas.setOverlayImage(null, canvas.renderAll.bind(canvas));
+}
+
+
 

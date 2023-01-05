@@ -5,7 +5,7 @@ import { setPatternMode } from './modes/pattern.js'
 import { getStampLevel, getTotalStampsRows, setDecreaseStampLevel, setIncreaseStampLevel, stampsList, updateStampLayout, setStampMarked } from './stamps.js';
 import { backgroundsList, updateBackgroundLayout, setIncreaseBackgroundLevel, setDecreaseBackgroundLevel, getBackgroundLevel, getTotalBackgroundRows, defaultBackground } from './backgrounds.js';
 import { setStampMode } from './modes/stamp.js'
-import { initCanvas, removeBackgroundImage, setBackgroundImage } from './canvas.js';
+import { initCanvas, removeBackgroundImage, removeOverlayImage, setBackgroundImage, setOverlayImage } from './canvas.js';
 import { setCircleMode } from './modes/circle.js';
 import { setHLineMode } from './modes/hline.js';
 import { setSquareMode } from './modes/square.js';
@@ -14,6 +14,7 @@ import {
     getBlur, setBlur, getDrawingColor, getLineSize, getOpacity, setDecreaseLineSize,
     setDrawingColor, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples
 } from './userPreferences.js';
+import { defaultOverlay, getOverlayLevel, getTotalOverlayRows, overlaysList, setDecreaseOverlayLevel, setIncreaseOverlayLevel, updateOverlayLayout } from './overlays.js';
 
 
 const modes = {
@@ -41,7 +42,9 @@ export const setMouseEvents = (canvas) => {
         setButtonMarked('btn-pen')
         currentMode = modes.pen;
         setPenMode(canvas);
-        setBackgroundImage(`images/backgrounds/${defaultBackground}`, canvas)
+        setBackgroundImage(defaultBackground ? `images/backgrounds/${defaultBackground}` : null, canvas)
+        setOverlayImage(defaultOverlay ? `images/overlays/${defaultOverlay}` : null, canvas)
+        // canvas.setOverlayImage(`images/backgrounds/teste2.png`, canvas.renderAll.bind(canvas));
     })();
 
 
@@ -232,6 +235,21 @@ export const setButtonsOnClick = (canvas) => {
         document.getElementById('stamps-container').hidden = true
     }
 
+    // change to overlays container
+
+    document.getElementById('btn-overlays').onclick = (e) => {
+        currentMode = modes.default
+        setDefaultMode(canvas)
+        setButtonMarked()
+        document.getElementById('base-container').hidden = true
+        document.getElementById('overlays-container').hidden = false
+    }
+
+    document.getElementById('overlays-back-arrow').onclick = (e) => {
+        document.getElementById('base-container').hidden = false
+        document.getElementById('overlays-container').hidden = true
+    }
+
     // change to send-container
 
     document.getElementById('btn-send').onclick = (e) => {
@@ -359,6 +377,54 @@ export const setButtonsOnClick = (canvas) => {
         setDecreaseStampLevel();
         updateStampLayout()
     };
+
+    // OVERLAYS
+
+    function setOverlaysMarked(id, overlay) {
+        let alreadyMarked;
+
+        if (id) {
+            alreadyMarked = document.getElementById(id).classList.contains('contorno')
+        }
+
+        document.querySelectorAll('.overlay-list-item').forEach(item => {
+            document.getElementById(item.id).classList.remove('contorno')
+
+        });
+
+        if (!id) return
+
+        if (!alreadyMarked) {
+            document.getElementById(id).classList.add('contorno')
+            setOverlayImage(`images/overlays/${overlay}`, canvas)
+        } else {
+            removeOverlayImage(canvas)
+        }
+    }
+
+
+    // create onclick event to all overlays
+    overlaysList.map((item) => {
+        document.getElementById("overlay_" + item).onclick = (e) => {
+            setOverlaysMarked("overlay_" + item, item)
+        }
+    })
+
+
+    document.getElementById('overlays-down-arrow').onclick = (e) => {
+        if ((getBackgroundLevel() + 1) * getTotalOverlayRows() > overlaysList.length) return
+        setIncreaseOverlayLevel();
+        updateOverlayLayout();
+    };
+
+    document.getElementById('overlays-up-arrow').onclick = (e) => {
+        if (getOverlayLevel() === 0) return
+        setDecreaseOverlayLevel();
+        updateOverlayLayout()
+    };
+
+
+
 
     // Change values + -
     document.getElementById('btn-linesize-decrease').onclick = (e) => {
