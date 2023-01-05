@@ -1,0 +1,2 @@
+node serviceWindows.js
+@pause
