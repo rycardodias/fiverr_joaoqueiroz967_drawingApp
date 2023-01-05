@@ -181,6 +181,7 @@ export const setButtonsOnClick = (canvas) => {
             }
         })
         removeBackgroundImage(canvas)
+        setBackgroundImage(`images/backgrounds/${defaultBackground}`, canvas)
     }
 
     /// CHANGE CONTAINERS
