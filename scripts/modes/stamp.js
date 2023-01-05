@@ -14,7 +14,7 @@ export const setStampMode = (canvas, mouse, imageId) => {
             top: mouse.e.clientY - img.height / 2 * scale
         });
 
-        img.perPixelTargetFind = true;
+        // img.perPixelTargetFind = true;
         img.hasControls = true
         img.hasBorders = false;
 
@@ -39,6 +39,7 @@ export const setStampMode = (canvas, mouse, imageId) => {
         img.applyFilters();
 
         canvas.add(img);
+        canvas.setActiveObject(img);
     });
 
     canvas.renderAll();
