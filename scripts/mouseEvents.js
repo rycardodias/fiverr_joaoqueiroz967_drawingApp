@@ -3,9 +3,9 @@ import { setPenMode } from './modes/pen.js'
 import { setSprayMode } from './modes/spray.js'
 import { setPatternMode } from './modes/pattern.js'
 import { getStampLevel, getTotalStampsRows, setDecreaseStampLevel, setIncreaseStampLevel, stampsList, updateStampLayout, setStampMarked } from './stamps.js';
-import { backgroundsList, updateBackgroundLayout, setIncreaseBackgroundLevel, setDecreaseBackgroundLevel, getBackgroundLevel, getTotalBackgroundRows } from './backgrounds.js';
+import { backgroundsList, updateBackgroundLayout, setIncreaseBackgroundLevel, setDecreaseBackgroundLevel, getBackgroundLevel, getTotalBackgroundRows, defaultBackground } from './backgrounds.js';
 import { setStampMode } from './modes/stamp.js'
-import { removeBackgroundImage, setBackgroundImage } from './canvas.js';
+import { initCanvas, removeBackgroundImage, setBackgroundImage } from './canvas.js';
 import { setCircleMode } from './modes/circle.js';
 import { setHLineMode } from './modes/hline.js';
 import { setSquareMode } from './modes/square.js';
@@ -15,10 +15,6 @@ import {
     setDrawingColor, setIncreaseLineSize, setLineSize, setOpacity, sizeMultiples
 } from './userPreferences.js';
 
-
-let mousePressed = false;
-export let currentMode = '';
-let currentStamp = ''
 
 const modes = {
     default: '',
@@ -31,9 +27,24 @@ const modes = {
     stamp: 'stamp'
 }
 
+let mousePressed = false;
+export let currentMode = '';
+let currentStamp = ''
+
+
+
 
 
 export const setMouseEvents = (canvas) => {
+
+    (function init() {
+        setButtonMarked('btn-pen')
+        currentMode = modes.pen;
+        setPenMode(canvas);
+        setBackgroundImage(`images/backgrounds/${defaultBackground}`, canvas)
+    })();
+
+
 
     canvas.on('mouse:move', (e) => {
         if (!mousePressed) return;

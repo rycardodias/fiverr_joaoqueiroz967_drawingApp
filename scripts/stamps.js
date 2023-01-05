@@ -1,6 +1,6 @@
 export const stampsList = ["1.png", "2.png", "3.png", "4.png", "5.png",];
 let stampLevel = 0;
-const totalStampRows = 3
+const totalStampRows = 6
 
 export function getStampLevel() {
     return stampLevel;
