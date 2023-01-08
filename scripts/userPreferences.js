@@ -5,7 +5,6 @@ export function getDrawingColor() {
 }
 
 export function setDrawingColor(color) {
-    console.log('color', color)
     return drawingColor = color;
 }
 

@@ -68,12 +68,6 @@ export const setMouseEvents = (canvas) => {
         mousePressed = false;
         const objects = canvas.getObjects();
 
-        objects.forEach((object) => {
-            object.onclick = () => {
-                console.log("click", object)
-            }
-        })
-
         if (objects.length > 0) {
             if (objects[objects.length - 1].get('type') !== 'image') {
                 objects[objects.length - 1].selectable = false
