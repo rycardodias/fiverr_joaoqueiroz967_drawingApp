@@ -7,6 +7,18 @@ scaleImg.src = './images/icons/ic_scale_central.svg'
 var unselectImg = document.createElement('img');
 unselectImg.src = './images/icons/ic_ok.svg'
 
+function calculateSize(size) {
+    size *= 220
+
+    if (size > 50) {
+        return 50;
+    } else if (size < 30) {
+        return 30;
+    } else {
+        return size;
+    }
+}
+
 function deleteObject(eventData, transform) {
     var target = transform.target;
     var canvas = target.canvas;
@@ -15,15 +27,12 @@ function deleteObject(eventData, transform) {
 }
 
 function renderDeleteIcon(ctx, left, top, styleOverride, fabricObject) {
-    let scalingSize = 220 * fabricObject.scaleX;
-    var size;
-    if (scalingSize > 50) {
-        size = 50;
-    } else if (scalingSize < 25) {
-        size = 25;
-    } else {
-        size = scalingSize;
-    }
+
+    var size = calculateSize(fabricObject.scaleX);
+
+    this.sizeX = size;
+    this.sizeY = size;
+
     ctx.save();
     ctx.translate(left, top);
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
@@ -41,15 +50,10 @@ fabric.Object.prototype.controls.deleteControl = new fabric.Control({
 
 
 function renderRotateIcon(ctx, left, top, styleOverride, fabricObject) {
-    let scalingSize = 220 * fabricObject.scaleX;
-    var size;
-    if (scalingSize > 50) {
-        size = 50;
-    } else if (scalingSize < 25) {
-        size = 25;
-    } else {
-        size = scalingSize;
-    }
+    var size = calculateSize(fabricObject.scaleX);
+
+    this.sizeX = size;
+    this.sizeY = size;
 
     ctx.save();
     ctx.translate(left, top);
@@ -61,23 +65,18 @@ function renderRotateIcon(ctx, left, top, styleOverride, fabricObject) {
 fabric.Object.prototype.controls.rotate = new fabric.Control({
     x: 0.6,
     y: -0.2,
-    cornerSize: 500,
-    actionHandler: fabric.controlsUtils.rotationWithSnapping,//change to this
+    actionHandler: fabric.controlsUtils.rotationWithSnapping,
     actionName: 'rotate',
     cursorStyle: 'pointer',
     render: renderRotateIcon
 });
 
 function renderScaleIcon(ctx, left, top, styleOverride, fabricObject) {
-    let scalingSize = 220 * fabricObject.scaleX;
-    var size;
-    if (scalingSize > 50) {
-        size = 50;
-    } else if (scalingSize < 25) {
-        size = 25;
-    } else {
-        size = scalingSize;
-    }
+    var size = calculateSize(fabricObject.scaleX);
+
+    this.sizeX = size;
+    this.sizeY = size;
+
     ctx.save();
     ctx.translate(left, top);
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
@@ -96,15 +95,11 @@ fabric.Object.prototype.controls.scale = new fabric.Control({
 
 
 function renderUnselectIcon(ctx, left, top, styleOverride, fabricObject) {
-    let scalingSize = 220 * fabricObject.scaleX;
-    var size;
-    if (scalingSize > 50) {
-        size = 50;
-    } else if (scalingSize < 25) {
-        size = 25;
-    } else {
-        size = scalingSize;
-    }
+    var size = calculateSize(fabricObject.scaleX);
+
+    this.sizeX = size;
+    this.sizeY = size;
+
     ctx.save();
     ctx.translate(left, top);
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
