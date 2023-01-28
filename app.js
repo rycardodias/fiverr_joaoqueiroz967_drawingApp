@@ -27,3 +27,8 @@ app.post('/saveImage', (req, res) => {
 
   res.json(imgBase64)
 })
+
+// const sendEmail = require('./email/sendEmail')
+
+// sendEmail('ricdias98@gmail.com', 'teste.png')
+
