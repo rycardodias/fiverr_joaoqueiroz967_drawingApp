@@ -1,3 +1,4 @@
+const { randomUUID } = require("crypto");
 const express = require("express");
 const app = express();
 
@@ -16,21 +17,27 @@ app.get("/", (req, res) => {
 });
 
 app.post('/saveImage', (req, res) => {
-  const { imgBase64 } = req.body
+  const { imgBase64, email } = req.body
+
+  console.log("email", email)
 
   const directory = 'C:/desenhos'
 
   const data = imgBase64.replace(/^data:image\/\w+;base64,/, "");
 
+  const image = `${Date.now()}_${randomUUID()}.png`
+
   const buf = Buffer.from(data, "base64");
-  fs.writeFileSync(`${directory}/${Date.now()}_${"desenho"}.png`, buf);
+  fs.writeFileSync(`${directory}/${image}`, buf);
 
   res.json(imgBase64)
+
+  addObject({ email, image })
 })
 
 // send emails
 
-const { removeObject } = require("./email/localDatabase");
+const { removeObject, addObject } = require("./email/localDatabase");
 const sendEmail = require("./email/sendEmail");
 
 setInterval(() => {

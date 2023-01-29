@@ -16,7 +16,6 @@ import {
 } from './userPreferences.js';
 import { defaultOverlay, getOverlayLevel, getTotalOverlayRows, overlaysList, setDecreaseOverlayLevel, setIncreaseOverlayLevel, updateOverlayLayout } from './overlays.js';
 
-
 const modes = {
     default: '',
     pen: 'pen',
@@ -262,8 +261,7 @@ export const setButtonsOnClick = (canvas) => {
 
         var dataURL = canvas.toDataURL();
 
-        // let name = prompt("Por favor, introduza o seu nome", "");
-
+        let email = prompt("Por favor, introduza o seu email", "");
 
         fetch('/saveImage', {
             method: 'POST',
@@ -272,7 +270,8 @@ export const setButtonsOnClick = (canvas) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                imgBase64: dataURL
+                imgBase64: dataURL,
+                email
             })
         })
 
