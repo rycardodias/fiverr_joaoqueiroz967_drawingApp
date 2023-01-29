@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const globals = require('../globals.json')
 
-const filePath = 'email/data.json'
+const filePath = globals.customersPath
 
 function writeFile(data) {
     try {

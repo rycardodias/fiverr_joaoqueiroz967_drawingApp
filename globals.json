@@ -1,4 +1,5 @@
 {
+    "customersPath": "email/data.json",
     "imagesFolder": "C:/desenhos/",
     "emailSender": "ricdias98@gmail.com",
     "emailPassword": "ocopwgbodrzrdokr",
