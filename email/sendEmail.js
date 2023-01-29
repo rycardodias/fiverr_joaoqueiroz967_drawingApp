@@ -2,10 +2,8 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const globals = require('../globals.json')
 
-const { addObject } = require('./localDatabase')
-
 module.exports = function sendEmail(email, image) {
-    try {
+    return new Promise(function (resolve, reject) {
         const transport = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -27,16 +25,13 @@ module.exports = function sendEmail(email, image) {
             ]
         };
 
-        transport.sendMail(message, (err, info) => {
-            if (err) {
-                console.log(err);
-                addObject({ email, image })
+
+        transport.sendMail(message, function (error, info) {
+            if (error) {
+                reject(error);
             } else {
-                console.log(info);
+                resolve(info);
             }
         });
-    } catch (error) {
-        console.error(error);
-        addObject({ email, image })
-    }
+    });
 }

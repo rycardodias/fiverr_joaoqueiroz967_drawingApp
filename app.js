@@ -28,7 +28,23 @@ app.post('/saveImage', (req, res) => {
   res.json(imgBase64)
 })
 
-// const sendEmail = require('./email/sendEmail')
+// send emails
 
-// sendEmail('ricdias98@gmail.com', 'teste.png')
+const { removeObject } = require("./email/localDatabase");
+const sendEmail = require("./email/sendEmail");
 
+setInterval(() => {
+  const dataArray = require('./email/data.json');
+
+  dataArray.map(item => {
+    sendEmail(item.email, item.image)
+      .then((result) => {
+        removeObject(dataArray, item)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+  })
+}, 1000 * 60 * 60
+)

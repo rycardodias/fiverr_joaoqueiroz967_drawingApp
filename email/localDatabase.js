@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const globals = require('../globals.json')
+
 const filePath = 'email/data.json'
 
 function writeFile(data) {
@@ -35,15 +37,26 @@ function removeObject(data, record) {
     try {
         if (!data && !record) return;
 
-        let index = data.findIndex(obj => obj.name === record.name && obj.email === record.email);
+        let index = data.findIndex(obj => obj.image === record.image && obj.email === record.email);
 
         if (index !== -1) {
             data.splice(index, 1);
             writeFile(data)
+            removeImage(record.image)
         }
     } catch (error) {
         return console.error(error)
     }
+}
+
+function removeImage(image) {
+    fs.unlink(globals.imagesFolder + image, (error) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log(`Successfully removed file: ${filePath}`);
+        }
+    });
 }
 
 module.exports = { addObject, removeObject }
