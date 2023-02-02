@@ -1,0 +1,156 @@
+.txt_insira_email {
+	font-size: 20px;
+	color: #ffffff;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-weight: normal;
+	width: 100%;
+	margin-top: 25px;
+	 -webkit-font-smoothing: antialiased;
+	text-align: center;
+	
+}
+
+.cor_enviar {
+	background-color: #D31E21;
+	color: #fff;
+	
+}
+
+.textarea_formulario {
+    background-color: #4d4d4d;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+    font-weight: normal;
+    color: #fff;
+    font-size: 20px;
+    border-bottom-width: 1px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    -webkit-font-smoothing: antialiased;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;     
+    width: 400px;
+	text-align: center;
+	padding-bottom: 15px;
+   
+
+}
+
+
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.onscreenKeyboard {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #4d4d4d;
+    font-size: 24px;
+    line-height: 24px;
+    color: #4d4d4d;
+    padding-bottom: 10px;
+    -webkit-user-select: none;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 550px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.onscreenKeyboard.caps {
+    text-transform: uppercase;
+}
+
+.keyRow {
+    display: table;
+    width: 100%;
+    margin-bottom: -10px;
+	border-spacing: 10px;
+}
+
+.keyRow_enviar {
+    display: table;
+    width: 100%;
+    margin-bottom: -10px;
+	border-spacing: 10px;
+}
+
+.keyRow div {
+       display: table-cell;
+    text-align: center;
+    width: 30px;
+    background: #fff;
+    padding: 15px 0;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-bottom: 0px solid #ddd;
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    font-size: 20px;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-weight: normal;
+	 -webkit-font-smoothing: antialiased;
+}
+
+.keyRow_enviar div {
+       display: table-cell;
+    text-align: center;
+    width: 30px;
+    background: #4caf50;
+    padding: 15px 0;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-bottom: 0px solid #ddd;
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    font-size: 20px;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-weight: normal;
+	color: #fff;
+	 -webkit-font-smoothing: antialiased;
+}
+
+.keyRow div:hover {
+    -webkit-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.1);
+}
+
+.keyRow div:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background: #bbb;
+    border-color: #bbb;
+}
+
+.keyRow .space-key {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+.keyRow .shift-key,
+.keyRow .space-key,
+.keyRow .delete-key {
+    text-transform: none;
+}
+
+.onscreenKeyboard.caps .keyRow .shift-key {
+    background: #1572e0;
+    color: #fff;
+}

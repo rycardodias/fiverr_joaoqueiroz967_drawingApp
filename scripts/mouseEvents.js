@@ -259,33 +259,13 @@ export const setButtonsOnClick = (canvas) => {
         document.getElementById('base-container').hidden = false
         document.getElementById('send-container').hidden = true
 
-        var dataURL = canvas.toDataURL();
-
-        let email = prompt("Por favor, introduza o seu email", "");
-
-        fetch('/saveImage', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                imgBase64: dataURL,
-                email
-            })
-        })
-
-        // downloadImage(dataURL, `${Date.now()}_${"desenho"}.jpeg`);
-
-        // Save | Download image
-        function downloadImage(data, filename = 'untitled.jpeg') {
-            var a = document.createElement('a');
-            a.href = data;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-        }
+        document.getElementById('keyboard-container').hidden = false
     }
+
+    document.querySelector('.fechar_formulario').addEventListener('click', function () {
+        document.getElementById('keyboard-container').hidden = true
+    });
+
 
     function setBackgroundMarked(id, background) {
         let alreadyMarked;

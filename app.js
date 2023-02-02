@@ -19,9 +19,7 @@ app.get("/", (req, res) => {
 app.post('/saveImage', (req, res) => {
   const { imgBase64, email } = req.body
 
-  console.log("email", email)
-
-  const directory = 'C:/desenhos'
+  const directory = require('./globals.json').imagesFolder
 
   const data = imgBase64.replace(/^data:image\/\w+;base64,/, "");
 
@@ -53,5 +51,5 @@ setInterval(() => {
       })
 
   })
-}, 1000 * 60 * 60
+}, 1000 * 60
 )

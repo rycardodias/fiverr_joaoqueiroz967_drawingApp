@@ -9,6 +9,9 @@ import { changeEvents } from './scripts/changeEvents.js'
 import './scripts/functions/controlObjects.js'
 import { getOverlays } from './scripts/overlays.js'
 
+
+import buildKeyboard from './scripts/keyboard.js'
+
 // initialize the functions
 const canvas = initCanvas('canvas');
 
@@ -16,6 +19,8 @@ const canvas = initCanvas('canvas');
 getStamps()
 getBackgrounds()
 getOverlays()
+
+buildKeyboard(canvas)
 
 changeEvents(canvas)
 
@@ -26,6 +31,11 @@ setButtonsOnClick(canvas)
 window.addEventListener('resize', () => {
     resizeCanvas(canvas)
 })
+
+
+
+
+
 
 
 

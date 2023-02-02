@@ -11,6 +11,7 @@
     <script src="./lib/bootstrap.min.js"></script>
     <script src="./lib/jscolor.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="lib/teclado.css" />
 </head>
 
 <body>
@@ -240,8 +241,7 @@
 
                             <div class="col-12">
                                 <img id="overlays-back-arrow" src="images/ic_seta_esquerda.svg" draggable="false" />
-                                <img id="overlays-down-arrow" src="images/ic_seta_baixo.svg" draggable="false"
-                                    hidden />
+                                <img id="overlays-down-arrow" src="images/ic_seta_baixo.svg" draggable="false" hidden />
                                 <img id="overlays-up-arrow" src="images/ic_seta_cima.svg" draggable="false" hidden />
                             </div>
 
@@ -267,11 +267,18 @@
                 </div>
 
             </div>
+
+            <div id="keyboard-container" style="display: block;" hidden>
+                <div id="keyboard" class="onscreenKeyboard">
+                </div>
+            </div>
+
         </div>
 
         <script src="./lib/fabric.min.js"></script>
         <script type="module" src="index.js"></script>
         <script src="lib/paleta_cores.js"></script>
+
 
 </body>
 
