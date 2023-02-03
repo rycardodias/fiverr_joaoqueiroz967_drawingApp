@@ -52,5 +52,5 @@ setInterval(() => {
       })
 
   })
-}, 1000 * 60
+}, 1000 * 60 * require('./globals').emailSendDelayInMinutes
 )

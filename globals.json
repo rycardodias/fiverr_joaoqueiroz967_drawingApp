@@ -4,5 +4,6 @@
     "emailSender": "ricdias98@gmail.com",
     "emailPassword": "ocopwgbodrzrdokr",
     "emailSubject": "Isto é o assunto do email",
-    "emailText": "Isto é o texto do email"
+    "emailText": "Isto é o texto do email",
+    "emailSendDelayInMinutes": 60
 }
