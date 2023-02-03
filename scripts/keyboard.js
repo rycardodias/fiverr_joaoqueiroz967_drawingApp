@@ -22,7 +22,7 @@ export default function buildKeyboard(canvas) {
     htmlObject += '<input type="text" class="textarea_formulario" autofocus="true" />'
 
     keys.map((row, rowIndex) => {
-        let htmlRow = '<div class="keyRow">'
+        let htmlRow = '<div class="keyRow" >'
         keys[rowIndex].map((key) => {
             htmlRow += `<div class="key ${key}-key" data-character="${key}">${key}</div>`
         })
@@ -32,9 +32,11 @@ export default function buildKeyboard(canvas) {
     })
 
 
-    htmlObject += '<div class="keyRow_enviar"><div class="key space-key" data-character="space"><span>enviar</span></div></div>'
+    htmlObject += '<div key="enviar_btn" class="keyRow_enviar"><div class="key space-key"  data-character="space">Enviar</div></div>'
 
     document.getElementById('keyboard').innerHTML = htmlObject
+
+
 
 
     document.querySelectorAll('.key').forEach(function (element) {
@@ -48,29 +50,30 @@ export default function buildKeyboard(canvas) {
                     email = '';
                     break;
                 case 'space':
-                    var dataURL = canvas.toDataURL();
+                    if (email) {
+                        var dataURL = canvas.toDataURL();
 
-                    fetch('/saveImage', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            imgBase64: dataURL,
-                            email
+                        fetch('/saveImage', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                imgBase64: dataURL,
+                                email
+                            })
                         })
-                    })
-                        .then(() => document.getElementById('keyboard-container').hidden = true)
+                            .then(() => document.getElementById('keyboard-container').hidden = true)
 
-                    email = ''
+                        email = ''
+                    }
                     break;
                 default:
                     email += char
             }
 
             input.value = email
-
         });
     });
 }

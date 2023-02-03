@@ -1,7 +1,7 @@
 export const overlaysList = ["teste.png", "teste2.png"];
 let overlayLevel = 0;
 const totalOverlayRows = 4
-export const defaultOverlay = "teste.png"
+export const defaultOverlay = ""
 
 export function getOverlayLevel() {
     return overlayLevel;
